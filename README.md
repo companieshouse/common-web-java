@@ -26,7 +26,7 @@ The library can be imported as a maven dependency:
 Projects using this must implement changes to the ```baseLayout.html``` file.
 
 1. ```<div th:replace="fragments/header :: header (headerText = 'Your service name here')">```
-2. ```<div th:replace="fragments/piwik :: piwik (moduleName = 'payment-service') "></div>```
+2. ```<div th:replace="fragments/piwik :: piwik (moduleName = 'your-module-name-here') "></div>```
 
 ## Description 
 
