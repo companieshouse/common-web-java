@@ -45,7 +45,7 @@ Fragment that makes it clear that the service is in beta above the main page con
 
 ### footer.html
 
-Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
+Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers. User's projects must include ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
 
 ### globalErrors.html
 
@@ -57,11 +57,11 @@ Fragments that acts as the header for the webpage. Gives information about the s
 
 ### piwik.html
 
-Fragment that listens to user interactions. Contains a customisable field that needs to be set in the ```baseLayout.html```, as mentioned above.
+Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` that needs to be set in the ```baseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
 
 ### userBar.html
 
-Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address.
+Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address. The user must include the mono
 
 ### error.html
 
