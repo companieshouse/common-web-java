@@ -31,3 +31,38 @@ Projects using this must implement changes to the ```baseLayout.html``` file.
 ## Description 
 
 A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons, headers, footers, continue buttons, etc.
+
+
+## More Info
+
+### backButtonLink.html
+
+Fragment that provides a button to go backwards in the journey.
+
+### betaBanner.html
+
+Fragment that makes it clear that the service is in beta above the main page content. Users are invited to give feedback via a survey.
+
+### footer.html
+
+Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
+
+### globalErrors.html
+
+Fragment that is used for global errors, displays information about the error if possible.
+
+### header.html
+
+Fragments that acts as the header for the webpage. Gives information about the service. Contains a customisable field that displays the name of the service being used. As mentioned above this is set in ```baseLayout.html```.
+
+### piwik.html
+
+Fragment that listens to user interactions. Contains a customisable field that needs to be set in the ```baseLayout.html```, as mentioned above.
+
+### userBar.html
+
+Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address.
+
+### error.html
+
+Generic error page that gives the user an option to email Companies House.
