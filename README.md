@@ -61,8 +61,8 @@ Fragment that listens to user interactions. Contains a customisable field ```${m
 
 ### userBar.html
 
-Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address. The user must include the mono
+Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address. The user must include ```monitorGui.url``` in the project's ```application.properties```.
 
 ### error.html
 
-Generic error page that gives the user an option to email Companies House.
+Generic error page that gives the user an option to email Companies House. It is situated in the 
