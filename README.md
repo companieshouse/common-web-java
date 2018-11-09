@@ -37,7 +37,7 @@ A common-web dependency to contain reusable resources and fragments for SpringBo
 
 ### backButtonLink.html
 
-Fragment that provides a button to go backwards in the journey. Requires a ```backButton``` parameter to be set. Pages that require a back button need to use ```addBackPageAttributeToModel``` method to their controller, otherwise no back button will appear.
+Fragment that provides a button to go backwards in the journey. Requires a ```backButton``` parameter to be set. If the ```backButton``` model attribute is absent, the 'back' link won't appear.
 
 ### betaBanner.html
 
