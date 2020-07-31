@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project	xmlns="http://maven.apache.org/POM/4.0.0"
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-								http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project    xmlns="http://maven.apache.org/POM/4.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                                http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>uk.gov.companieshouse</groupId>
-	<artifactId>common-web-java</artifactId>
-	<version>unversioned</version>
-	<packaging>jar</packaging>
-	<name>Common Web Java</name>
-	<description>Location for Web resources that can be reused by other Java Web modules</description>
+    <groupId>uk.gov.companieshouse</groupId>
+    <artifactId>common-web-java</artifactId>
+    <version>unversioned</version>
+    <packaging>jar</packaging>
+    <name>Common Web Java</name>
+    <description>Location for Web resources that can be reused by other Java Web modules</description>
 
-	<parent>
-		<groupId>uk.gov.companieshouse</groupId>
-		<artifactId>companies-house-parent</artifactId>
-		<version>1.2.0</version>
-	</parent>
+    <parent>
+        <groupId>uk.gov.companieshouse</groupId>
+        <artifactId>companies-house-parent</artifactId>
+        <version>1.2.0</version>
+    </parent>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-boot-starter-thymeleaf.version>2.0.5.RELEASE</spring-boot-starter-thymeleaf.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-boot-starter-thymeleaf.version>2.0.5.RELEASE</spring-boot-starter-thymeleaf.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>${spring-boot-starter-thymeleaf.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot-starter-thymeleaf.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
