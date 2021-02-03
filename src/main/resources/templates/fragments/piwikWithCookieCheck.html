@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Piwik</title>
+</head>
+<body>
+<div id="cookie-banner" th:fragment="cookieBanner">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-heading-m">Tell us whether you accept cookies</p>
+        <p>We use
+          <a href="">cookies to collect information</a>
+          about how you use GOV.UK. We use this information to make the website work as well as possible and improve government services.</p>
+        <a class="govuk-button govuk-!-margin-right-3" th:onclick="acceptCookies()">Accept all cookies</a>
+        <a th:onclick="rejectCookies()" class="govuk-button">Reject all Cookies</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:fragment="piwikWithCookieCheck" class="govuk-visually-hidden">
+  <script th:inline="javascript">
+      function startPiwik() {
+          bindPiwikListener([[${moduleName}]], /*[[${@environment.getProperty('piwik.url')}]]*/, /*[[${@environment.getProperty('piwik.siteId')}]]*/);
+      }
+  </script>
+  <noscript>
+    <p>
+      <img th:src="@{{piwikUrl}/piwik.php?idsite={siteId}(piwikUrl=${@environment.getProperty('piwik.url')},
+                             siteId=${@environment.getProperty('piwik.site.id')})}" style="border:0;" alt="" />
+    </p>
+  </noscript>
+</div>
+</body>
+</html>
