@@ -3,7 +3,7 @@ Shared code and resources for Java web applications.
 
 ## Requirements
 In order to build the library locally you will need the following:
-- [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Java](https://www.oracle.com/java/technologies/downloads/)
 - [Maven](https://maven.apache.org/download.cgi)
 - [Git](https://git-scm.com/downloads)
 
