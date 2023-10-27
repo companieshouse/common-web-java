@@ -1,6 +1,25 @@
 # common-web-java
 Shared code and resources for Java web applications.
 
+Things To consider
+--
+
++ Always make sure any code changes you make get copied across to `main-8` (compatible with Java 8) also to `main` (compatible with Java 17)
+
+###### Changes Specific to Java 8
+
++ Please raise a PR to merge your changes only to [main-8](https://github.com/companieshouse/common-web-java/tree/main-8) branch
++ Use Java 8 Major tags generated from pipeline in your references (example : tags 1.x.x for java 8)
+
+###### Changes Specific to Java 17
+
++ Please merge your changes only to [main](https://github.com/companieshouse/common-web-java) branch
++ Use Java 17 Major tags generated from pipeline in your references (example : tags 2.x.x for java 17)
+
+###### Pipeline
+
++ Please use this [Pipeline](https://ci-platform.companieshouse.gov.uk/teams/team-development/pipelines/common-web-java) and make sure respective `source-code-main-17` or `source-code-main-8` task gets started once the PR is created or after the PR is merged to `main` or `main-8` and once the pipeline tasks are complete then use the created tags respectively.
+
 ## Requirements
 In order to build the library locally you will need the following:
 - [Java](https://www.oracle.com/java/technologies/downloads/)
