@@ -4,8 +4,6 @@ Shared code and resources for Java web applications.
 Things To consider
 --
 
-+ Always make sure any code changes you make get copied across to `main-8` (compatible with Java 8) also to `main` (compatible with Java 21)
-
 > [!NOTE]
 > When using in a web application remember to include a dependency on Spring
 > Security to protect against possible Cross Site Request Forgery attacks.
@@ -21,6 +19,8 @@ Things To consider
 >  <https://docs.spring.io/spring-security/reference/features/exploits/csrf.html>
 > + About Spring Security's Mitigation:
 >  <https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html>
+
++ Always make sure any code changes you make get copied across to `main-8` (compatible with Java 8) also to `main` (compatible with Java 21)
 
 ###### Changes Specific to Java 8
 
