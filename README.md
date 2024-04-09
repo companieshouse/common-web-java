@@ -23,7 +23,7 @@ Things To consider
 + Please use this [Pipeline](https://ci-platform.companieshouse.gov.uk/teams/team-development/pipelines/common-web-java) and make sure respective `source-code-main` or `source-code-main-8` task gets started once the PR is created or after the PR is merged to `main` or `main-8` and once the pipeline tasks are complete then use the created tags respectively.
 
 > [!NOTE]
-> When using in a web application remember to include a dependency on Spring
+> When using in a web application you **must** include a dependency on Spring
 > Security to protect against possible Cross Site Request Forgery attacks.
 > Add dependencies on either:
 >
