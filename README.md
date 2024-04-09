@@ -28,6 +28,9 @@ Things To consider
 > Add either:
 >
 > + `spring-boot-security-starter`
+>
+> Or Both
+>
 > + `spring-security-core`
 > + `spring-security-web`
 >
