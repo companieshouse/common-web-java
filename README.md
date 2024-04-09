@@ -25,7 +25,7 @@ Things To consider
 > [!NOTE]
 > When using in a web application remember to include a dependency on Spring
 > Security to protect against possible Cross Site Request Forgery attacks.
-> Add either:
+> Add dependencies on either:
 >
 > + `spring-boot-security-starter`
 >
