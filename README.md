@@ -14,6 +14,13 @@ Things To consider
 > + `spring-boot-security-starter`
 > + `spring-security-core`
 > + `spring-security-web`
+>
+> More Details:
+>
+> + About CSRF more generally:
+>  <https://docs.spring.io/spring-security/reference/features/exploits/csrf.html>
+> + About Spring Security's Mitigation:
+>  <https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html>
 
 ###### Changes Specific to Java 8
 
