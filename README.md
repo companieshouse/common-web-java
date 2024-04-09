@@ -4,22 +4,6 @@ Shared code and resources for Java web applications.
 Things To consider
 --
 
-> [!NOTE]
-> When using in a web application remember to include a dependency on Spring
-> Security to protect against possible Cross Site Request Forgery attacks.
-> Add either:
->
-> + `spring-boot-security-starter`
-> + `spring-security-core`
-> + `spring-security-web`
->
-> More Details:
->
-> + About CSRF more generally:
->  <https://docs.spring.io/spring-security/reference/features/exploits/csrf.html>
-> + About Spring Security's Mitigation:
->  <https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html>
-
 + Always make sure any code changes you make get copied across to `main-8` (compatible with Java 8) also to `main` (compatible with Java 21)
 
 ###### Changes Specific to Java 8
@@ -37,6 +21,22 @@ Things To consider
 ###### Pipeline
 
 + Please use this [Pipeline](https://ci-platform.companieshouse.gov.uk/teams/team-development/pipelines/common-web-java) and make sure respective `source-code-main` or `source-code-main-8` task gets started once the PR is created or after the PR is merged to `main` or `main-8` and once the pipeline tasks are complete then use the created tags respectively.
+
+> [!NOTE]
+> When using in a web application remember to include a dependency on Spring
+> Security to protect against possible Cross Site Request Forgery attacks.
+> Add either:
+>
+> + `spring-boot-security-starter`
+> + `spring-security-core`
+> + `spring-security-web`
+>
+> More Details:
+>
+> + About CSRF more generally:
+>  <https://docs.spring.io/spring-security/reference/features/exploits/csrf.html>
+> + About Spring Security's Mitigation:
+>  <https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html>
 
 ## Requirements
 In order to build the library locally you will need the following:
