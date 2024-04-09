@@ -6,6 +6,15 @@ Things To consider
 
 + Always make sure any code changes you make get copied across to `main-8` (compatible with Java 8) also to `main` (compatible with Java 21)
 
+> [!INFO]
+> When using in a web application remember to include a dependency on Spring
+> Security to protect against possible Cross Site Request Forgery attacks.
+> Add either:
+>
+> + `spring-boot-security-starter`
+> + `spring-security-core`
+> + `spring-security-web`
+
 ###### Changes Specific to Java 8
 
 + Please create branch only from `main-8`
