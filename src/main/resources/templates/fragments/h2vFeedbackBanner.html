@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
+  <th:block th:unless="${#strings.isEmpty(h2vLinkFeedback)}" th:fragment="h2vFeedBackBanner">
+    <div class="govuk-phase-banner">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">
+          Beta
+        </strong>
+        <span class="govuk-phase-banner__text">
+          <span th:text="#{label.header.thisIsANewServiceYour}"></span>
+          <a class="govuk-link" th:href="${h2vLinkFeedback}" th:text="#{label.header.feedback}">feedback</a>
+          <span th:text="#{label.header.willHelpUsToImproveIt}"></span>
+        </span>
+      </p>
+    </div>
+  </th:block>
+</html>
