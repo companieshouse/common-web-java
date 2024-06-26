@@ -16,12 +16,12 @@
     <parent>
         <groupId>uk.gov.companieshouse</groupId>
         <artifactId>companies-house-parent</artifactId>
-        <version>2.1.4</version>
+        <version>2.1.5</version>
     </parent>
 
     <properties>
         <java.version>21</java.version>
-        <spring-boot-starter-thymeleaf.version>3.1.4</spring-boot-starter-thymeleaf.version>
+        <spring-boot-starter-thymeleaf.version>3.3.0</spring-boot-starter-thymeleaf.version>
     </properties>
 
     <dependencies>
