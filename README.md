@@ -104,16 +104,22 @@ Optional variables:
 
 ```headerURL``` - must be defined if ```headerText``` exists as it defines the link used if user clicks on ```headerText```
 
+### phaseBanner.html
+
+Configurable fragment for alpha/beta phase banner above the main page content. Users are invited to give feedback via a survey.
+
+```phaseBanner``` set to ```alpha``` or ```beta``` will display the phase banner. No banner if not set
+
+```phaseBannerLink``` if set, a feedback link will be included in the phase banner with URL = phaseBannerLink
+
+To set ```phaseBanner``` for all screens, use ```@ModelAttribute``` in the GlobalController class using ```@ControllerAdvice```
+
 ---
 ### Remaining fragments not yet fully integrated into chsBaseLayout 
 
 ### backButtonLink.html
 
 Fragment that provides a button to go backwards in the journey. Requires a ```backButton``` parameter to be set. If the ```backButton``` model attribute is absent, the 'back' link won't appear.
-
-### betaBanner.html
-
-Fragment that makes it clear that the service is in beta above the main page content. Users are invited to give feedback via a survey.
 
 ### footer.html
 
