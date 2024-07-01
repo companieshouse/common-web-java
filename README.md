@@ -40,21 +40,72 @@ The library can be imported as a maven dependency:
 <dependency>
     <groupId>uk.gov.companieshouse</groupId>
     <artifactId>common-web-java</artifactId>
-    <version>1.0.0-rc1</version>
+    <version>latest-version-number</version>
 </dependency>
 ```
 
-Projects using this must implement changes to the ```baseLayout.html``` file.
-
-1. ```<div th:replace="fragments/header :: header (headerText = 'Your service name here')"></div>```
-2. ```<div th:replace="fragments/piwik :: piwik (moduleName = 'your-module-name-here')"></div>```
+Projects using this must include the standard base layout by the use of this layout in the individual service:
+```
+<!DOCTYPE html>
+<!-- pull in generic layout from common-web-java -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"```
+      layout:decorate="~{layouts/chsBaseLayout (serviceName = 'oauth-web') }">
+</html>
+```
+```serviceName``` should be set to the name of the service using the template e.g. ```oauth-web``` in this example
 
 ## Description 
 
-A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons, headers, footers, continue buttons, etc.
+A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons,
+headers, footers, continue buttons, etc.
 
+Example usage of the standard layout and fragments can be found in ```authentication-service```, ```oauth-web```
+and ```user.web.identity.ch.gov.uk```
+
+Welsh language support is being added and requires the addition of ```localse/common-messages``` to the basenames of the
+```MessageCongig``` class in the service eg:
+```
+messageSource.setBasenames("locales/messages", "locales/common-messages");
+```
+
+The node.js equivalent is ```ch-node-utils``` but this is still to be fully implemented
 
 ## More Info
+
+### chsBaseLayout.html
+
+"Standard" layout for CHS services.
+
+This layout expects properties/environment variables to have been set accordingly.
+
+| Property     | Environment   | Description                                        |
+|--------------|---------------|----------------------------------------------------|
+| cdn.url      | CDN_HOST      | Global environment variable for CDN                |
+| chs.url      | CHS_URL       | Global environment variable for main CHS home page | 
+| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
+| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
+
+Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
+
+The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
+
+### piwikWithCookieCheck.html
+
+CHS cookie permissions banner. Requires ```chs.url``` property listed above.
+
+### header.html
+
+Standard header for CHS services. Requires ```cdn.url``` & ```chs.url``` properties listed above.
+
+Optional variables:
+
+```headerText``` - if defined is displayed in header as the service name
+
+```headerURL``` - must be defined if ```headerText``` exists as it defines the link used if user clicks on ```headerText```
+
+---
+### Remaining fragments not yet fully integrated into chsBaseLayout 
 
 ### backButtonLink.html
 
@@ -71,10 +122,6 @@ Fragment that provides useful links to the user below the main page content. Lin
 ### globalErrors.html
 
 Fragment that is used for global errors, displays information about the error if possible.
-
-### header.html
-
-Fragments that acts as the header for the webpage. Gives information about the service. Contains a customisable field that displays the name of the service being used. As mentioned above this is set in ```baseLayout.html```.
 
 ### piwik.html
 
