@@ -7,25 +7,11 @@
                 queryString=${queryString},
                 queryString1=${request.queryString != null ? request.queryString.startsWith('lang=') ? request.queryString.replaceFirst('lang=.*', '') : request.queryString.replaceFirst('&lang=.*', '') : ''}"
   >
-         <div th:if="${requestURI.contains('/app/accept')}">
-            <form id="lang-form" th:unless="${locale == lang}" th:hreflang="${lang}"
-                  th:action="${url} + '?' + ${queryParams} + ${lang}" method="post">
-               <input class="govuk-input" id="requestJwe" type="hidden" name="requestJwe"
-                      th:value="${requestJwe}"/>
-               <input class="govuk-input" type="hidden" name="client_id" th:value="${client_id}"/>
-               <input class="govuk-input" type="hidden" name="auth_code" th:value="${auth_code}"/>
-               <input style="background-color: white; font-size: 1rem; line-height: 1.25; list-style-type: disc; font-size: 16px; background: white; box-shadow: 0px 0px 0px transparent; border: 0px solid transparent; text-shadow: 0px 0px 0px transparent; color: #1d70b8;order: 2;"
-                      class="govuk-link" type="submit" th:value="${displayLang}"/>
-            </form>
-            <span th:if="${locale == lang}" th:text=${displayLang} style="padding-right: 10px;"></span>
-         </div>
-         <div th:unless="${requestURI.contains('/app/accept')}">
-            <a th:unless="${locale == lang}" th:href="${url} + '?' + ${queryParams} + ${lang}" th:hreflang=${lang}
-               rel="alternate" class="govuk-link">
-            <span th:text=${displayLang}></span>
-            </a>
-            <span th:if="${locale == lang}" th:text=${displayLang}></span>
-         </div>
-      </span>
+    <a th:unless="${locale == lang}" th:href="${url} + '?' + ${queryParams} + ${lang}" th:hreflang=${lang} rel="alternate" class="govuk-link">
+      <span th:text=${displayLang}></span>
+    </a>
+    <span th:if="${locale == lang}" th:text=${displayLang}></span>
+
+  </span>
 </th:block>
 </html>

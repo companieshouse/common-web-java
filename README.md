@@ -114,6 +114,16 @@ Configurable fragment for alpha/beta phase banner above the main page content. U
 
 To set ```phaseBanner``` for all screens, use ```@ModelAttribute``` in the GlobalController class using ```@ControllerAdvice```
 
+### localesBanner.html
+
+Fragment for the language selector
+
+```noLanguageSelector``` if set to anything, then banner is NOT displayed
+
+### addLangToUrl.html
+
+Fragment used by ```localesBanner``` to add language to any url
+
 ---
 ### Remaining fragments not yet fully integrated into chsBaseLayout 
 
