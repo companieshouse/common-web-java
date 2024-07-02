@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+<a id="back-button-link"
+   data-th-text="#{button.back}"
+   th:fragment="backLink"
+   th:if="${backLink != null}"
+   th:href="${backLink}"
+   th:attr="data-event-id=${matomoBackButton}"
+   class="govuk-back-link">
+</a>
+</body>
+</html>

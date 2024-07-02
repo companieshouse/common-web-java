@@ -124,12 +124,14 @@ Fragment for the language selector
 
 Fragment used by ```localesBanner``` to add language to any url
 
+### back-button.html
+
+Fragment that provides a button to go backwards in the journey. Requires a ```backLink``` parameter to be set.
+
+If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button 
+
 ---
 ### Remaining fragments not yet fully integrated into chsBaseLayout 
-
-### backButtonLink.html
-
-Fragment that provides a button to go backwards in the journey. Requires a ```backButton``` parameter to be set. If the ```backButton``` model attribute is absent, the 'back' link won't appear.
 
 ### footer.html
 
