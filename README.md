@@ -130,20 +130,22 @@ Fragment that provides a button to go backwards in the journey. Requires a ```ba
 
 If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button 
 
----
-### Remaining fragments not yet fully integrated into chsBaseLayout 
+### piwik.html
+
+Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` which is set in the ```chsBaseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
 
 ### footer.html
 
-Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers. User's projects must include ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
+Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
+
+User's projects must include ```cdn.url```, ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
+
+---
+### Remaining fragments not yet fully integrated into chsBaseLayout 
 
 ### globalErrors.html
 
 Fragment that is used for global errors, displays information about the error if possible.
-
-### piwik.html
-
-Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` that needs to be set in the ```baseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
 
 ### userBar.html
 
