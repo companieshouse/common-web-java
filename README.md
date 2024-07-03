@@ -40,45 +40,112 @@ The library can be imported as a maven dependency:
 <dependency>
     <groupId>uk.gov.companieshouse</groupId>
     <artifactId>common-web-java</artifactId>
-    <version>1.0.0-rc1</version>
+    <version>latest-version-number</version>
 </dependency>
 ```
 
-Projects using this must implement changes to the ```baseLayout.html``` file.
-
-1. ```<div th:replace="fragments/header :: header (headerText = 'Your service name here')"></div>```
-2. ```<div th:replace="fragments/piwik :: piwik (moduleName = 'your-module-name-here')"></div>```
+Projects using this must include the standard base layout by the use of this layout in the individual service:
+```
+<!DOCTYPE html>
+<!-- pull in generic layout from common-web-java -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"```
+      layout:decorate="~{layouts/chsBaseLayout (serviceName = 'oauth-web') }">
+</html>
+```
+```serviceName``` should be set to the name of the service using the template e.g. ```oauth-web``` in this example
 
 ## Description 
 
-A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons, headers, footers, continue buttons, etc.
+A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons,
+headers, footers, continue buttons, etc.
 
+Example usage of the standard layout and fragments can be found in ```authentication-service```, ```oauth-web```
+and ```user.web.identity.ch.gov.uk```
+
+Welsh language support is being added and requires the addition of ```localse/common-messages``` to the basenames of the
+```MessageCongig``` class in the service eg:
+```
+messageSource.setBasenames("locales/messages", "locales/common-messages");
+```
+
+The node.js equivalent is ```ch-node-utils``` but this is still to be fully implemented
 
 ## More Info
 
-### backButtonLink.html
+### chsBaseLayout.html
 
-Fragment that provides a button to go backwards in the journey. Requires a ```backButton``` parameter to be set. If the ```backButton``` model attribute is absent, the 'back' link won't appear.
+"Standard" layout for CHS services.
 
-### betaBanner.html
+This layout expects properties/environment variables to have been set accordingly.
 
-Fragment that makes it clear that the service is in beta above the main page content. Users are invited to give feedback via a survey.
+| Property     | Environment   | Description                                        |
+|--------------|---------------|----------------------------------------------------|
+| cdn.url      | CDN_HOST      | Global environment variable for CDN                |
+| chs.url      | CHS_URL       | Global environment variable for main CHS home page | 
+| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
+| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
+
+Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
+
+The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
+
+### piwikWithCookieCheck.html
+
+CHS cookie permissions banner. Requires ```chs.url``` property listed above.
+
+### header.html
+
+Standard header for CHS services. Requires ```cdn.url``` & ```chs.url``` properties listed above.
+
+Optional variables:
+
+```headerText``` - if defined is displayed in header as the service name
+
+```headerURL``` - must be defined if ```headerText``` exists as it defines the link used if user clicks on ```headerText```
+
+### phaseBanner.html
+
+Configurable fragment for alpha/beta phase banner above the main page content. Users are invited to give feedback via a survey.
+
+```phaseBanner``` set to ```alpha``` or ```beta``` will display the phase banner. No banner if not set
+
+```phaseBannerLink``` if set, a feedback link will be included in the phase banner with URL = phaseBannerLink
+
+To set ```phaseBanner``` for all screens, use ```@ModelAttribute``` in the GlobalController class using ```@ControllerAdvice```
+
+### localesBanner.html
+
+Fragment for the language selector
+
+```noLanguageSelector``` if set to anything, then banner is NOT displayed
+
+### addLangToUrl.html
+
+Fragment used by ```localesBanner``` to add language to any url
+
+### back-button.html
+
+Fragment that provides a button to go backwards in the journey. Requires a ```backLink``` parameter to be set.
+
+If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button 
+
+### piwik.html
+
+Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` which is set in the ```chsBaseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
 
 ### footer.html
 
-Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers. User's projects must include ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
+Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
+
+User's projects must include ```cdn.url```, ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
+
+---
+### Remaining fragments not yet fully integrated into chsBaseLayout 
 
 ### globalErrors.html
 
 Fragment that is used for global errors, displays information about the error if possible.
-
-### header.html
-
-Fragments that acts as the header for the webpage. Gives information about the service. Contains a customisable field that displays the name of the service being used. As mentioned above this is set in ```baseLayout.html```.
-
-### piwik.html
-
-Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` that needs to be set in the ```baseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
 
 ### userBar.html
 

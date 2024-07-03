@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>User Bar</title>
-    </head>
-    <body>
-        <div th:fragment="userBar" class="js-toggle-nav" id="global-nav">
-
-            <nav class="content" role="navigation">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+    <th:block th:fragment="userBar">
+        <div th:if="${userBar}" class="js-toggle-nav" id="global-nav">
+            <a href="#navigation" class="js-header-toggle" th:text="${userEmail}" style="display:none;"></a>
+            <nav role="navigation" class="content">
                 <ul id="navigation" class="mobile-hidden">
-                    <li class="user" id="signed-in-user"th:text="${userEmail + ':'}"></li>
-                    <li><a th:href="@{{chsAccountUrl}/user/account(chsAccountUrl=${@environment.getProperty('account.url')})}" id="your-details" class="piwik-event" data-event-id="Your details - top menu">Your details</a></li>
-                    <li><a href="/user/transactions" id="your-filings" class="piwik-event" data-event-id="Your filings - top menu">Your filings</a></li>
-                    <li><a th:href="@{{chsFollowUrl}/admin/monitor(chsFollowUrl=${@environment.getProperty('monitorGui.url')})}" id="companies-you-follow" class="piwik-event" data-event-id="Companies you follow">Companies you follow</a></li>
-                    <li><a href="/signout" id="user-signout" class="piwik-event" data-event-id="Sign out">Sign out</a></li>
+                    <li id="signed-in-user" class="user"><span th:text="${userEmail}"></span>:</li>
+                    <li><a id="your_details" th:href="${yourDetailsUrl}" class="govuk-link" th:text="#{label.user-bar.account-details}">Your details</a></li>
+                    <li><a id="recent_filings" th:href="${recentFilingsUrl}" class="govuk-link" th:text="#{label.user-bar.filings}">Your filings</a></li>
+                    <li th:if="${companiesYouFollowUrl}">
+                        <a id="companies_you_follow" th:href="${companiesYouFollowUrl}" class="govuk-link" th:text="#{label.user-bar.companies-following}">
+                            Companies you follow
+                        </a>
+                    </li>
+                    <li th:if="${basketWebUrl}">
+                        <a class="govuk-link" id="basket" th:href="${basketWebUrl}" th:text="#{label.user-bar.basket(${basketItemsNum})}">Basket (X)</a>
+                    </li>
+                    <li><a id="user-signout" th:href="${userSignoutUrl}" class="govuk-link" th:text="#{label.user-bar.sign-out}">Sign out</a></li>
                 </ul>
             </nav>
         </div>
-    </body>
+    </th:block>
+</body>
 </html>

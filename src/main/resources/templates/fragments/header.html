@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
     <head>
-        <title>Header</title>
+        <title th:text='#{label.fragments-header.title}'>Header</title>
     </head>
     <body class="govuk-template__body">
         <th:block th:fragment="header">
-            <a href="#content" class="govuk-skip-link">Skip to main content</a>
-            <header role="banner" id="global-header" class="govuk-header">
+            <header class="govuk-header" data-module="govuk-header">
                 <div class="govuk-header__container govuk-width-container">
                     <div class="header-global">
-                        <div class="govuk-header__logo">
-                            <a href="/" title="Go to the companies house homepage" id="logo" class="govuk-header__link govuk-header__link--homepage">
-                                <span class="govuk-header__logotype-text"> Companies House </span>
+                        <div class="govuk-header__logo" style="width:33.33%">
+                            <a th:href="${@environment.getProperty('chs.url')}" title="Go to the companies house homepage" id="logo"
+                               class="govuk-header__link govuk-header__link--homepage"
+                               style="display: flex; align-items: center;">
+                                <img style="margin-left: 10px; height:40px; display: block;" th:src="@{{cdnUrl}/images/royal-coat-of-arms-white.svg(cdnUrl=${@environment.getProperty('cdn.url')})}" th:alt="#{label.header.crestAlt}"/>
+                                <span style="margin-left: 10px; font-weight: normal; font-size: 0.9em;" class="govuk-header__logotype-text" th:text='#{label.header.logoText}'></span>
                             </a>
                         </div>
                     </div>
 
-                     <div class="govuk-header__content"
-                          th:if="${headerText != null}">
-                        <a id="proposition-name" th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name"  th:text='${headerText}'></a>
+                     <div class="govuk-header__content" th:if="${headerText != null}">
+                        <a id="proposition-name" th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name"></a>
                      </div>
 
-                 </div>
+                </div>
             </header>
         </th:block>
     </body>
