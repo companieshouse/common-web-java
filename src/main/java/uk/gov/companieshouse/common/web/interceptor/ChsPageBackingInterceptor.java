@@ -98,7 +98,7 @@ public class ChsPageBackingInterceptor implements HandlerInterceptor {
 
     // TODO CC-1415 Clarify whether we should be getting the user email address this way going forward.
     // Private beta work : get email address from session of a signed-in user.
-    private String getEmailAddressFromUserProfile(){
+    protected String getEmailAddressFromUserProfile(){
         UserProfile userProfile;
         var signInInfo = getSession().getSignInInfo();
         if (signInInfo != null) {
