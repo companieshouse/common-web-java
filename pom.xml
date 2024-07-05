@@ -21,6 +21,7 @@
     <properties>
         <java.version>21</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <spring-boot-starter-thymeleaf.version>3.3.0</spring-boot-starter-thymeleaf.version>
         <spring-boot-dependencies.version>3.2.4</spring-boot-dependencies.version>
         <spring-security-core.version>6.1.5</spring-security-core.version>
@@ -140,5 +141,19 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
