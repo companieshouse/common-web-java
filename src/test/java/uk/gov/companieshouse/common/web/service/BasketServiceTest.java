@@ -23,15 +23,11 @@ import uk.gov.companieshouse.api.handler.order.request.BasketGet;
 import uk.gov.companieshouse.api.model.ApiResponse;
 import uk.gov.companieshouse.api.model.order.BasketLinksApi;
 import uk.gov.companieshouse.api.model.order.BasketLinksDataApi;
-import uk.gov.companieshouse.common.web.sdk.ApiClientService;
 import uk.gov.companieshouse.logging.Logger;
 import uk.gov.companieshouse.service.ServiceException;
 
 @ExtendWith(MockitoExtension.class)
 class BasketServiceTest {
-
-    @Mock
-    private ApiClientService apiClientService;
 
     @Mock
     private ApiClient apiClient;
@@ -57,8 +53,13 @@ class BasketServiceTest {
     private BasketService basketService;
 
     @BeforeEach
-    void initApiClient() {
-        when(apiClientService.getApiClient()).thenReturn(apiClient);
+    void setUp() {
+        basketService = new BasketService(logger) {
+            @Override
+            protected ApiClient getApiClient() {
+                return apiClient;
+            }
+        };
         when(apiClient.basket()).thenReturn(basketResourceHandler);
         when(basketResourceHandler.get(any())).thenReturn(basketGet);
     }

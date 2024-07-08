@@ -3,11 +3,12 @@ package uk.gov.companieshouse.common.web.service;
 import com.google.api.client.http.HttpStatusCodes;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriTemplate;
+import uk.gov.companieshouse.api.ApiClient;
 import uk.gov.companieshouse.api.error.ApiErrorResponseException;
 import uk.gov.companieshouse.api.handler.exception.URIValidationException;
 import uk.gov.companieshouse.api.model.order.BasketLinksApi;
-import uk.gov.companieshouse.common.web.sdk.ApiClientService;
 import uk.gov.companieshouse.logging.Logger;
+import uk.gov.companieshouse.sdk.manager.ApiClientManager;
 import uk.gov.companieshouse.service.ServiceException;
 
 /**
@@ -16,13 +17,11 @@ import uk.gov.companieshouse.service.ServiceException;
 @Service
 public class BasketService {
 
-    private final ApiClientService apiClientService;
     private final Logger logger;
 
     private static final UriTemplate GET_BASKET_LINKS_URI = new UriTemplate("/basket/links");
 
-    public BasketService(ApiClientService apiClientService, Logger logger) {
-        this.apiClientService = apiClientService;
+    public BasketService(Logger logger) {
         this.logger = logger;
     }
 
@@ -33,7 +32,7 @@ public class BasketService {
     * @return BasketLinksApi.getData.getItems
     */
     public String[] getBasketLinks() throws ServiceException {
-        var apiClient = apiClientService.getApiClient();
+        var apiClient = getApiClient();
         BasketLinksApi basketLinksApi;
         var uri = GET_BASKET_LINKS_URI.toString();
         try {
@@ -55,5 +54,9 @@ public class BasketService {
             logger.debug("User not enrolled for multi-item basket; not displaying basket link.");
             return new String[]{};
         }
+    }
+
+    protected ApiClient getApiClient() {
+        return ApiClientManager.getSDK();
     }
 }

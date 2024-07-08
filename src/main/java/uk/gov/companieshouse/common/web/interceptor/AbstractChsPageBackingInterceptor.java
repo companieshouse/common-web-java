@@ -10,17 +10,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import uk.gov.companieshouse.common.web.service.BasketService;
 import uk.gov.companieshouse.logging.Logger;
-import uk.gov.companieshouse.session.Session;
-import uk.gov.companieshouse.session.handler.SessionHandler;
-import uk.gov.companieshouse.session.model.UserProfile;
-
-import java.util.Objects;
 
 /**
  * Interceptor that provides basic "backing" state required to render CHS pages.
  */
 @Component
-public class ChsPageBackingInterceptor implements HandlerInterceptor {
+public abstract class AbstractChsPageBackingInterceptor implements HandlerInterceptor {
 
     static final String MODEL_ATTR_USER_BAR = "userBar";
     static final String MODEL_ATTR_YOUR_DETAILS_URL = "yourDetailsUrl";
@@ -48,8 +43,8 @@ public class ChsPageBackingInterceptor implements HandlerInterceptor {
     @Value("${monitor.gui-url}")
     private String monitorGuiUrl;
 
-    public ChsPageBackingInterceptor(BasketService basketService,
-                                     Logger logger) {
+    protected AbstractChsPageBackingInterceptor(BasketService basketService,
+                                             Logger logger) {
         this.basketService = basketService;
         this.logger = logger;
     }
@@ -78,7 +73,7 @@ public class ChsPageBackingInterceptor implements HandlerInterceptor {
 
         modelAndView.addObject(MODEL_ATTR_USER_SIGNOUT_URL, USER_SIGNOUT_URL);
 
-        var userEmail = getEmailAddressFromUserProfile();
+        var userEmail = getUserEmailAddress();
         modelAndView.addObject(MODEL_ATTR_USER_EMAIL, userEmail);
     }
 
@@ -96,22 +91,10 @@ public class ChsPageBackingInterceptor implements HandlerInterceptor {
         }
     }
 
-    // TODO CC-1415 Clarify whether we should be getting the user email address this way going forward.
-    // Private beta work : get email address from session of a signed-in user.
-    protected String getEmailAddressFromUserProfile(){
-        UserProfile userProfile;
-        var signInInfo = getSession().getSignInInfo();
-        if (signInInfo != null) {
-            userProfile = signInInfo.getUserProfile();
-        } else {
-            userProfile = new UserProfile();
-        }
-        // Return an empty String rather than null
-        return Objects.requireNonNullElse( userProfile.getEmail(), "");
-    }
-
-    private Session getSession() {
-        return SessionHandler.getSessionFromContext();
-    }
+    /**
+     * Implement this to provide the user email address to this interceptor.
+     * @return the email address of the currently logged-in user
+     */
+    protected abstract String getUserEmailAddress();
 
 }

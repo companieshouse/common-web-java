@@ -2,20 +2,20 @@ package uk.gov.companieshouse.common.web.interceptor;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.BASKET_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.GET_REQUEST;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_BASKET_ITEMS;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_BASKET_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_COMPANIES_YOU_FOLLOW_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_RECENT_FILINGS_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_USER_BAR;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_USER_EMAIL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_USER_SIGNOUT_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.MODEL_ATTR_YOUR_DETAILS_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.TRUE;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.USER_SIGNOUT_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.YOUR_DETAILS_URL;
-import static uk.gov.companieshouse.common.web.interceptor.ChsPageBackingInterceptor.YOUR_FILINGS_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.BASKET_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.GET_REQUEST;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_BASKET_ITEMS;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_BASKET_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_COMPANIES_YOU_FOLLOW_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_RECENT_FILINGS_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_USER_BAR;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_USER_EMAIL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_USER_SIGNOUT_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.MODEL_ATTR_YOUR_DETAILS_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.TRUE;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.USER_SIGNOUT_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.YOUR_DETAILS_URL;
+import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackingInterceptor.YOUR_FILINGS_URL;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,7 +32,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ModelAndView;
-import uk.gov.companieshouse.common.web.sdk.ApiClientService;
 import uk.gov.companieshouse.common.web.service.BasketService;
 import uk.gov.companieshouse.logging.Logger;
 import uk.gov.companieshouse.logging.LoggerFactory;
@@ -43,7 +42,7 @@ import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
 
 @ExtendWith(SystemStubsExtension.class)
 @SpringBootTest
-class ChsPageBackingInterceptorTest {
+class AbstractChsPageBackingInterceptorTest {
 
     private static final String POST_REQUEST = "POST";
     private static final String USER_EMAIL_ADDRESS = "user@email.com";
@@ -52,13 +51,8 @@ class ChsPageBackingInterceptorTest {
     static class TestConfiguration {
 
         @Bean
-        ApiClientService apiClientService() {
-            return new ApiClientService("token internalApiUrl value");
-        }
-
-        @Bean
-        BasketService basketService(final ApiClientService apiClientService, final Logger logger) {
-            return new BasketService(apiClientService, logger);
+        BasketService basketService(final Logger logger) {
+            return new BasketService(logger);
         }
 
         @Bean
@@ -67,11 +61,11 @@ class ChsPageBackingInterceptorTest {
         }
 
         @Bean
-        ChsPageBackingInterceptor chsPageBackingInterceptor(final BasketService basketService,
-                                                            final Logger logger) {
-            return new ChsPageBackingInterceptor(basketService, logger) {
+        AbstractChsPageBackingInterceptor chsPageBackingInterceptor(final BasketService basketService,
+                                                                    final Logger logger) {
+            return new AbstractChsPageBackingInterceptor(basketService, logger) {
                 @Override
-                protected String getEmailAddressFromUserProfile() {
+                protected String getUserEmailAddress() {
                     return USER_EMAIL_ADDRESS;
                 }
             };
@@ -86,7 +80,7 @@ class ChsPageBackingInterceptorTest {
     private Logger logger;
 
     @Autowired
-    private ChsPageBackingInterceptor chsPageBackingInterceptor;// = InterceptorFactory.createChsPageBackingInterceptor(logger,"blah");
+    private AbstractChsPageBackingInterceptor abstractChsPageBackingInterceptor;
 
     @Mock
     private HttpServletRequest httpServletRequest;
@@ -127,7 +121,7 @@ class ChsPageBackingInterceptorTest {
     @DisplayName("Handles null ModelAndView object gracefully")
     @SuppressWarnings("squid:S2699") // at least one assertion
     void postHandleHandlesNullModelAndViewGracefully() {
-        chsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, null);
+        abstractChsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, null);
     }
 
     @Test
@@ -138,7 +132,7 @@ class ChsPageBackingInterceptorTest {
         when(httpServletRequest.getMethod()).thenReturn(POST_REQUEST);
 
         // When
-        chsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
+        abstractChsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
 
         // Then
         verify(modelAndView).addObject(MODEL_ATTR_USER_BAR, TRUE);
@@ -155,7 +149,7 @@ class ChsPageBackingInterceptorTest {
         when(httpServletRequest.getMethod()).thenReturn(POST_REQUEST);
 
         // When
-        chsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
+        abstractChsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
 
         // Then
         verify(modelAndView).addObject(MODEL_ATTR_COMPANIES_YOU_FOLLOW_URL, monitorGuiUrl);
@@ -169,7 +163,7 @@ class ChsPageBackingInterceptorTest {
         when(httpServletRequest.getMethod()).thenReturn(GET_REQUEST);
 
         // When
-        chsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
+        abstractChsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
 
         // Then
         verify(modelAndView).addObject(MODEL_ATTR_USER_EMAIL, USER_EMAIL_ADDRESS);
@@ -184,7 +178,7 @@ class ChsPageBackingInterceptorTest {
         when(basketService.getBasketLinks()).thenReturn(new String[] {"CRT-919416-521817"});
 
         // When
-        chsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
+        abstractChsPageBackingInterceptor.postHandle(httpServletRequest, httpServletResponse, handler, modelAndView);
 
         // Then
         verify(modelAndView).addObject(MODEL_ATTR_BASKET_URL, chsUrl + BASKET_URL);
