@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <th:block th:fragment="adminSearch" th:if="${hasAdminSearch}">
+            <div style="display: inline-block; text-align: right; width: 100%">
+                <div>
+                    <h2>Service Administration</h2>
+                    <p>Impersonating user: no one</p>
+                </div>                
+                <form th:action="@{/admin/search}" id="form" class="form" autocomplete="off" method="POST" enctype="multipart/form-data">
+                    <input type="text" th:name="searchTerm" th:placeholder="${placeHolder}" style="width: 275px;"/>
+                    <input class="submit" type="submit" id="admin-search-btn" value="Search"/>
+                </form>
+                <a th:if="${hasAdminRole}" th:href="@{/admin/roles}">Manage Roles</a>&nbsp;
+                <a th:if="${hasAdminQueue}" th:href="${manageQueueUrl}">Manage Queues</a>&nbsp;
+                <a th:if="${hasAdminMonitor}" th:href="${manageMonitorUrl}">Manage Monitor</a>&nbsp;
+                <hr>
+            </div>
+        </th:block>
+    </body>
+</html>
