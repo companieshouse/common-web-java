@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import uk.gov.companieshouse.common.web.service.BasketService;
+import uk.gov.companieshouse.environment.exception.EnvironmentVariableException;
 import uk.gov.companieshouse.logging.Logger;
 
 /**
@@ -81,8 +82,12 @@ public abstract class AbstractChsPageBackingInterceptor implements HandlerInterc
         String[] basketItems = null;
         try {
             basketItems = basketService.getBasketLinks();
-        } catch(Exception e) {
+        } catch (Exception e) {
             logger.errorRequest(request, "Exception getting basket links: " + e.getMessage(), e);
+            if (e instanceof EnvironmentVariableException) {
+                // This type of exception indicates a fundamental configuration issue, it should not be buried.
+                throw (EnvironmentVariableException) e;
+            }
         }
 
         if (basketItems != null) {

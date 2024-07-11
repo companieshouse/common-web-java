@@ -19,11 +19,8 @@ import static uk.gov.companieshouse.common.web.interceptor.AbstractChsPageBackin
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,11 +33,7 @@ import uk.gov.companieshouse.common.web.service.BasketService;
 import uk.gov.companieshouse.logging.Logger;
 import uk.gov.companieshouse.logging.LoggerFactory;
 import uk.gov.companieshouse.service.ServiceException;
-import uk.org.webcompere.systemstubs.environment.EnvironmentVariables;
-import uk.org.webcompere.systemstubs.jupiter.SystemStub;
-import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
 
-@ExtendWith(SystemStubsExtension.class)
 @SpringBootTest
 class AbstractChsPageBackingInterceptorTest {
 
@@ -49,11 +42,6 @@ class AbstractChsPageBackingInterceptorTest {
 
     @Configuration
     static class TestConfiguration {
-
-        @Bean
-        BasketService basketService(final Logger logger) {
-            return new BasketService(logger);
-        }
 
         @Bean
         Logger getLogger() {
@@ -72,12 +60,6 @@ class AbstractChsPageBackingInterceptorTest {
         }
 
     }
-
-    @SystemStub
-    private static EnvironmentVariables variables;
-
-    @Mock
-    private Logger logger;
 
     @Autowired
     private AbstractChsPageBackingInterceptor abstractChsPageBackingInterceptor;
@@ -102,20 +84,6 @@ class AbstractChsPageBackingInterceptorTest {
 
     @Value("${monitor.gui-url}")
     private String monitorGuiUrl;
-
-    @BeforeAll
-    static void setUp() {
-        // Given
-        variables.set("OAUTH2_REQUEST_KEY", "Token value",
-                "OAUTH2_AUTH_URI", "Token value",
-                "OAUTH2_CLIENT_ID", "Token value",
-                "OAUTH2_REDIRECT_URI", "Token value");
-    }
-
-    @AfterAll
-    static void tearDown() throws Exception {
-        variables.teardown();
-    }
 
     @Test
     @DisplayName("Handles null ModelAndView object gracefully")
