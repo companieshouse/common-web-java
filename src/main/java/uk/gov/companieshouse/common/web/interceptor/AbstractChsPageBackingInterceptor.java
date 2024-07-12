@@ -45,7 +45,7 @@ public abstract class AbstractChsPageBackingInterceptor implements HandlerInterc
     private String monitorGuiUrl;
 
     protected AbstractChsPageBackingInterceptor(BasketService basketService,
-                                             Logger logger) {
+                                                Logger logger) {
         this.basketService = basketService;
         this.logger = logger;
     }
