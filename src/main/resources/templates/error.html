@@ -15,10 +15,10 @@
             </div>
 
             <p class="govuk-body" th:text="#{label.error.page.content.title}">Try again in a few moments.</p>
-            <p class="govuk-body" th:text="#{label.error.page.content.main}">
-                If this problem continues please &nbsp;
+            <p class="govuk-body">
+                <span th:text="#{label.error.page.content.main}">If this problem continues please</span>&nbsp;
                 <a class="govuk-link" th:href="@{{enquiries}(enquiries=${@environment.getProperty('enquiries')})}" data-th-text="#{label.error.page.content.email.link}">email us</a>
             </p>
-        </div>
+            </div>
     </body>
 </html>
