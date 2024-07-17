@@ -154,3 +154,26 @@ Fragment that contains several links and information for the user. Links to Your
 ### error.html
 
 Generic error page that gives the user an option to email Companies House. For this to work there must be a ```baseLayout.html``` file within the ```layouts/```` directory.
+
+### Using `AbstractChsPageBackingInterceptor`
+
+* This class can be used to provide the "backing state" to various CHS pages hosted by a Java app, such as
+  the `authentication-service`, for example.
+* Extend it and implement `getUserEmailAddress()` to provide the logged-in user's email address, which is required for
+  display in CHS pages. 
+* Implement a `WebMvcConfigurer` to configure the routes/pages which the interceptor will need to handle to provide the
+  backing state.
+* Note that as the state required depends on making
+  a [request](https://developer-specs.cidev.aws.chdev.org/order-company-products/reference/basket/get-basket-links) to
+  the Basket API, some configuration is required to use it. See below.
+
+#### Mandatory environment variables when using `AbstractChsPageBackingInterceptor`
+
+| Name                   | Description                                                             |
+|------------------------|-------------------------------------------------------------------------|
+| API_URL                | CHS API URL                                                             |
+| CHS_API_KEY            | Key identifying this client for requests to internal APIs               |
+| COOKIE_DOMAIN          | The domain of the cookie                                                |
+| COOKIE_NAME            | The name of the cookie                                                  |
+| DOCUMENT_API_LOCAL_URL | The Document API URL. Not used, but a (dummy) value must be configured. | 
+| PAYMENTS_API_URL       | The Payments API URL. Not used, but a (dummy) value must be configured. |
