@@ -16,10 +16,9 @@
 
             <p class="govuk-body" th:text="#{label.error.page.content.title}">Try again in a few moments.</p>
             <p class="govuk-body" th:text="#{label.error.page.content.main}">
-                If this problem continues please
-                <a th:href="@{{enquiries}(enquiries=${@environment.getProperty('enquiries')})}" data-th-text="#{label.error.page.content.email.link}">email us</a>
+                If this problem continues please &nbsp;
+                <a class="govuk-link" th:href="@{{enquiries}(enquiries=${@environment.getProperty('enquiries')})}" data-th-text="#{label.error.page.content.email.link}">email us</a>
             </p>
-          
         </div>
     </body>
 </html>
