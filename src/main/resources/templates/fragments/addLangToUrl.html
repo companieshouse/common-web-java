@@ -10,7 +10,7 @@
     <a th:unless="${locale == lang}" th:href="${url} + '?' + ${queryParams} + ${lang}" th:hreflang=${lang} rel="alternate" class="govuk-link">
       <span th:text=${displayLang}></span>
     </a>
-    <span th:if="${locale == lang}" th:text=${displayLang}></span>
+    <span aria-current="true" th:if="${locale == lang}" th:text=${displayLang}></span>
 
   </span>
 </th:block>
