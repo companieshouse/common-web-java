@@ -90,6 +90,8 @@ Requires ```serviceName``` variable to be set to the name of the service using t
 
 The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
 
+## Fragments
+
 ### piwikWithCookieCheck.html
 
 CHS cookie permissions banner. Requires ```chs.url``` property listed above.
@@ -151,6 +153,10 @@ Fragment that is used for global errors, displays information about the error if
 
 Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address. The user must include ```monitorGui.url``` in the project's ```application.properties```.
 
+## Common templates
+
 ### error.html
 
-Generic error page that gives the user an option to email Companies House. For this to work there must be a ```baseLayout.html``` file within the ```layouts/```` directory.
+Generic error page that gives the user an option to email Companies House. Requires ```enquiries``` property to be set in the service's ```application.properties``` or ```application.yaml``` files for the "email us" email address.
+
+e.g. ```enquiries=mailto:enquiries@companieshouse.gov.uk```
