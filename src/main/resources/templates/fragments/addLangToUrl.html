@@ -7,7 +7,8 @@
                 queryString=${queryString},
                 queryString1=${request.queryString != null ? request.queryString.startsWith('lang=') ? request.queryString.replaceFirst('lang=.*', '') : request.queryString.replaceFirst('&lang=.*', '') : ''}"
   >
-    <a th:unless="${locale == lang}" th:href="${url} + '?' + ${queryParams} + ${lang}" th:hreflang=${lang} rel="alternate" class="govuk-link">
+    <a th:unless="${locale == lang}" th:href="${url} + '?' + ${queryParams} + ${lang}" th:hreflang=${lang}
+       th:data-event-id="'select-language-' + ${lang}" rel="alternate" class="govuk-link">
       <span th:text=${displayLang}></span>
     </a>
     <span aria-current="true" th:if="${locale == lang}" th:text=${displayLang}></span>
