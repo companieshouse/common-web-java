@@ -20,7 +20,8 @@
                     <li th:if="${basketWebUrl}">
                         <a class="govuk-link" id="basket" th:href="${basketWebUrl}" th:text="#{label.user-bar.basket(${basketItemsNum})}">Basket (X)</a>
                     </li>
-                    <li><a id="user-signout" th:href="${userSignoutUrl}" class="govuk-link" th:text="#{label.user-bar.sign-out}">Sign out</a></li>
+                    <li><a id="user-signout" th:href="${userSignoutUrl}" class="govuk-link"
+                           data-event-id="signout-link" th:text="#{label.user-bar.sign-out}">Sign out</a></li>
                 </ul>
             </nav>
         </div>
