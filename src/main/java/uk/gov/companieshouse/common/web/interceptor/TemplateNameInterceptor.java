@@ -22,7 +22,7 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
         // Ensure that this is a GET request
         if (request.getMethod().equalsIgnoreCase("GET")) {
             // Extract the request URI and remove leading '/'
-            String requestURI = request.getRequestURI().substring(1);
+            var requestURI = request.getRequestURI().substring(1);
 
             // Get the last part of the URI (assuming it matches the HTML file name)
             String[] uriParts = requestURI.split("/");
