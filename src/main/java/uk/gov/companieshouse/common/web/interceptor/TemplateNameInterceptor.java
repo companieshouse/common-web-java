@@ -2,6 +2,7 @@ package uk.gov.companieshouse.common.web.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,10 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class TemplateNameInterceptor implements HandlerInterceptor {
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response,
-                           Object handler, ModelAndView modelAndView) {
-        // Ensure that this is a GET request and a model/view exists
-        if (request.getMethod().equalsIgnoreCase("GET") && modelAndView != null) {
+    public void postHandle(HttpServletRequest request, @NonNull HttpServletResponse response,
+                           @NonNull Object handler, ModelAndView modelAndView) {
+
+        // Ensure that this is a GET request
+        if (request.getMethod().equalsIgnoreCase("GET")) {
             // Extract the request URI and remove leading '/'
             String requestURI = request.getRequestURI().substring(1);
 
