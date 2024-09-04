@@ -26,6 +26,14 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit-platform-surefire-provider.version>1.3.2</junit-platform-surefire-provider.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>sonar-pr-analysis</id>
+            <properties>
+                <sonar.pullrequest.base>main</sonar.pullrequest.base>
+            </properties>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
