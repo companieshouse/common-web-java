@@ -63,7 +63,7 @@ headers, footers, continue buttons, etc.
 Example usage of the standard layout and fragments can be found in ```authentication-service```, ```oauth-web```
 and ```user.web.identity.ch.gov.uk```
 
-Welsh language support is being added and requires the addition of ```localse/common-messages``` to the basenames of the
+Welsh language support is being added and requires the addition of ```locales/common-messages``` to the basenames of the
 ```MessageCongig``` class in the service eg:
 ```
 messageSource.setBasenames("locales/messages", "locales/common-messages");
@@ -89,6 +89,25 @@ This layout expects properties/environment variables to have been set accordingl
 Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
 
 The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
+
+## Common Interceptors
+
+### TemplateNameInterceptor
+
+Sets templateName model attribute to the name of the template (determined by last part of http request).
+
+Added into a service by using the following in your interceptorConfig:
+```
+import uk.gov.companieshouse.common.web.interceptor.TemplateNameInterceptor;
+
+@Override
+public void addInterceptors(@NonNull InterceptorRegistry registry) {
+    ...
+    // Add interceptor to get template names for matomo events
+    registry.addInterceptor(new TemplateNameInterceptor());
+    ...
+}
+```
 
 ## Fragments
 
@@ -132,10 +151,6 @@ Fragment that provides a button to go backwards in the journey. Requires a ```ba
 
 If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button 
 
-### piwik.html
-
-Fragment that listens to user interactions. Contains a customisable field ```${moduleName}``` which is set in the ```chsBaseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.
-
 ### footer.html
 
 Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
@@ -160,3 +175,8 @@ Fragment that contains several links and information for the user. Links to Your
 Generic error page that gives the user an option to email Companies House. Requires ```enquiries``` property to be set in the service's ```application.properties``` or ```application.yaml``` files for the "email us" email address.
 
 e.g. ```enquiries=mailto:enquiries@companieshouse.gov.uk```
+
+### piwik.html
+
+Fragment that listens to user interactions. remains for legacy reasons - not used by chsBaseLayout.html
+Contains a customisable field ```${moduleName}``` which is set in the ```chsBaseLayout.html```, as mentioned above. This fragment requires the ```piwik.url``` and ```piwik.siteId``` properties in your project's ```application.properties``` file.

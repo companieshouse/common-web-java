@@ -34,6 +34,7 @@
 </head>
 <body class="govuk-template__body app-body-class">
 
+    <!-- templateName set by TemplateNameInterceptor and used in piwik-enable.js below for piwik/matomo event ids -->
     <div id="templateName" th:attr="data-id=${templateName},data-metadata=${metadata}" hidden></div>
 
     <script th:src="@{{cdnUrl}/javascripts/app/body-js-enable.js(cdnUrl=${@environment.getProperty('cdn.url')})}" type="text/javascript"></script>
