@@ -19,8 +19,8 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, @NonNull HttpServletResponse response,
                            @NonNull Object handler, ModelAndView modelAndView) {
 
-        // Ensure that this is a GET request
-        if (request.getMethod().equalsIgnoreCase("GET")) {
+        // Ensure that this is a GET request and a model/view exists
+        if (request.getMethod().equalsIgnoreCase("GET") && modelAndView != null) {
             // Extract the request URI and remove leading '/'
             var requestURI = request.getRequestURI().substring(1);
 

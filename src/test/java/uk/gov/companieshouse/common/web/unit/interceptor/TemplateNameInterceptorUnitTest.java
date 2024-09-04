@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import uk.gov.companieshouse.common.web.interceptor.TemplateNameInterceptor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(MockitoExtension.class)
@@ -46,5 +47,22 @@ class TemplateNameInterceptorUnitTest {
         interceptor.postHandle(request, response, new Object(), modelAndView);
 
         assertNull(modelAndView.getModel().get("templateName"));
+    }
+
+    @Test
+    void postHandle_NullModelAndView() {
+
+        var request = new MockHttpServletRequest();
+        var response = new MockHttpServletResponse();
+
+        request.setMethod("GET");
+        request.setRequestURI("/route-name/page-name");
+        boolean exceptionThrown = false;
+        try {
+            interceptor.postHandle(request, response, new Object(), null);
+        } catch(Exception e) {
+            exceptionThrown = true;
+        }
+        assertFalse(exceptionThrown);
     }
 }
