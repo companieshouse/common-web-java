@@ -6,6 +6,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /*
  * Interceptor to add name of template in get requests to model for use by matomo events
@@ -21,6 +22,14 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
 
         // Ensure that this is a GET request and a model/view exists
         if (request.getMethod().equalsIgnoreCase("GET") && modelAndView != null) {
+
+            // Exclude redirect responses
+            var viewName = modelAndView.getViewName();
+            if (modelAndView.getView() instanceof RedirectView ||
+                    (viewName != null && viewName.startsWith("redirect:"))) {
+                return;
+            }
+
             // Extract the request URI and remove leading '/'
             var requestURI = request.getRequestURI().substring(1);
 
