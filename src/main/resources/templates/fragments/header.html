@@ -11,6 +11,7 @@
                         <div class="govuk-header__logo" style="width:33.33%">
                             <a th:href="${@environment.getProperty('chs.url')}" title="Go to the companies house homepage" id="logo"
                                class="govuk-header__link govuk-header__link--homepage"
+                               data-event-id="companies-house-header-link"
                                style="display: flex; align-items: center;">
                                 <img style="margin-left: 10px; height:40px; display: block;" th:src="@{{cdnUrl}/images/royal-coat-of-arms-white.svg(cdnUrl=${@environment.getProperty('cdn.url')})}" th:alt="#{label.header.crestAlt}"/>
                                 <span style="margin-left: 10px; font-weight: normal; font-size: 0.9em;" class="govuk-header__logotype-text" th:text='#{label.header.logoText}'></span>
@@ -19,7 +20,9 @@
                     </div>
 
                      <div class="govuk-header__content" th:if="${headerText != null}">
-                        <a id="proposition-name" th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name"></a>
+                        <a id="proposition-name"
+                           data-event-id="service-header-link"
+                           th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name"></a>
                      </div>
 
                 </div>
