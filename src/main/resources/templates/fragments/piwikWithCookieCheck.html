@@ -17,25 +17,34 @@
         </div>
       </div>
       <div class="govuk-button-group">
-        <button id="accept-cookies-button" type="button" class="govuk-button" data-module="govuk-button">
+        <button id="accept-cookies-button" type="button" class="govuk-button"
+                data-event-id="accept-analytics-cookies" data-module="govuk-button">
           Accept analytics cookies
         </button>
-        <button id="reject-cookies-button" type="button" class="govuk-button" data-module="govuk-button">
+        <button id="reject-cookies-button" type="button" class="govuk-button"
+                data-event-id="reject-analytics-cookies" data-module="govuk-button">
           Reject analytics cookies
         </button>
-        <a class="govuk-link" th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">View cookies</a>
+        <a class="govuk-link" data-event-id="view-cookies"
+           th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">View cookies</a>
       </div>
     </div>
     <div id="accepted-cookies-message" class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">You've accepted analytics cookies. You can <a class="govuk-link" th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">change your cookie settings</a> at any time.</p>
+            <p class="govuk-body">You've accepted analytics cookies. You can
+              <a class="govuk-link" data-event-id="change-accepted-cookies"
+                 th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">
+                change your cookie settings
+              </a>
+              at any time.
+            </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
-        <button id="hide-accepted-message-button" class="govuk-button" data-module="govuk-button">
+        <button id="hide-accepted-message-button" class="govuk-button" data-event-id="hide-accepted-message" data-module="govuk-button">
           Hide this message
         </button>
       </div>
@@ -44,12 +53,18 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-             <p class="govuk-body">You've rejected analytics cookies. You can <a class="govuk-link" th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">change your cookie settings</a> at any time.</p>
+             <p class="govuk-body">You've rejected analytics cookies. You can
+               <a class="govuk-link" data-event-id="change-cookie-settings"
+                  th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">
+                 change your cookie settings
+               </a>
+               at any time.
+             </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
-        <button id="hide-rejected-message-button" class="govuk-button" data-module="govuk-button">
+        <button id="hide-rejected-message-button" class="govuk-button" data-event-id="hide-this-message" data-module="govuk-button">
           Hide this message
         </button>
       </div>

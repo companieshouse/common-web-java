@@ -11,7 +11,9 @@
 
           <span class="govuk-phase-banner__text" th:if="${phaseBannerLink != null}">
             <span th:text="#{label.phaseBanner.thisIsATrialServiceYour}"></span>
-            <a class="govuk-link" th:href="${phaseBannerLink}" th:text="#{label.phaseBanner.feedback}">feedback</a>
+            <a class="govuk-link" th:href="${phaseBannerLink}"
+               data-event-id="feedback-link"
+               th:text="#{label.phaseBanner.feedback}">feedback</a>
             <span th:text="#{label.phaseBanner.willHelpUsToImproveIt}"></span>
           </span>
         </p>
