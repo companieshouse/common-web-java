@@ -22,7 +22,7 @@
                      <div class="govuk-header__content" th:if="${headerText != null}">
                         <a id="proposition-name"
                            data-event-id="service-header-link"
-                           th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name"></a>
+                           th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name" th:text='${headerText}'></a>
                      </div>
 
                 </div>
