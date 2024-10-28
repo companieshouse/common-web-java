@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
+<th:block
+        th:if="${noLanguageSelector == null}"
+        th:fragment="localesBanner">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-column-full no-padd">
+            <nav class="govuk-language-select" aria-label="Language switcher">
+                <ul class="govuk-language-select__list">
+                    <li class="govuk-language-select__list-item">
+                        <div th:replace="~{fragments/addLangToUrl :: addLangToUrl(${#httpServletRequest.requestURI}, #{label.lang.en}, 'en', true)}"></div>
+                    </li>
+                    <li class="govuk-language-select__list-item" style="display: inline-flex">
+                        <div th:replace="~{fragments/addLangToUrl :: addLangToUrl(${#httpServletRequest.requestURI}, #{label.lang.cy}, 'cy', true)}"></div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</th:block>
+</html>

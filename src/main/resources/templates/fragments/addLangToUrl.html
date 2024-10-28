@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="addLangToUrl(url, displayLang, lang, force)"
+          th:with="queryString=${#request.queryString != null ? #request.queryString.startsWith('lang=') ? #request.queryString.replaceFirst('lang=.*', '') : #request.queryString.replaceFirst('&lang=.*', '') : ''}">
+    <a th:with="queryParams=${#strings.concat(queryString, queryString == '' ? 'lang=' : '&lang=')}"
+       th:href="${url} + '?' + ${queryParams} + ${lang}" th:lang=${lang} rel="alternate" class="govuk-link govuk-!-margin-2">
+        <span aria-hidden="true" th:text=${displayLang}></span>
+    </a>
+</th:block>
+</html>
