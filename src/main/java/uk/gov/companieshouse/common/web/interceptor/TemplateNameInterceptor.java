@@ -20,8 +20,9 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, @NonNull HttpServletResponse response,
                            @NonNull Object handler, ModelAndView modelAndView) {
 
-        // Ensure that this is a GET request and a model/view exists
-        if (request.getMethod().equalsIgnoreCase("GET") && modelAndView != null) {
+        // Ensure that a model/view exists
+        if ((request.getMethod().equalsIgnoreCase("GET") || request.getMethod().equalsIgnoreCase("POST"))
+                && modelAndView != null) {
 
             // Exclude redirect responses
             var viewName = modelAndView.getViewName();

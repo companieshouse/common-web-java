@@ -36,13 +36,13 @@ class TemplateNameInterceptorUnitTest {
     }
 
     @Test
-    void postHandle_NotGet() {
+    void postHandle_NotGetOrPost() {
 
         var request = new MockHttpServletRequest();
         var response = new MockHttpServletResponse();
         var modelAndView = new ModelAndView();
 
-        request.setMethod("POST");
+        request.setMethod("PUT");
         request.setRequestURI("/route-name/page-name");
 
         interceptor.postHandle(request, response, new Object(), modelAndView);
