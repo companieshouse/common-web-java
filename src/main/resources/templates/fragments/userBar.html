@@ -11,9 +11,11 @@
             <nav role="navigation" class="content">
                 <ul id="navigation" class="mobile-hidden">
                     <li id="signed-in-user" class="user"><span th:text="${userEmail}"></span>:</li>
-                    <li><a id="your_details" th:href="${yourDetailsUrl}" class="govuk-link" data-event-id="your-details"
+                    <li th:unless="${hideYourDetails}">
+                        <a id="your_details" th:href="${yourDetailsUrl}" class="govuk-link" data-event-id="your-details"
                            th:text="#{label.user-bar.account-details}">Your details</a></li>
-                    <li><a id="recent_filings" th:href="${recentFilingsUrl}" class="govuk-link" data-event-id="your-filings"
+                    <li th:unless="${hideRecentFilings}">
+                        <a id="recent_filings" th:href="${recentFilingsUrl}" class="govuk-link" data-event-id="your-filings"
                            th:text="#{label.user-bar.filings}">Your filings</a></li>
                     <li th:if="${companiesYouFollowUrl}">
                         <a id="companies_you_follow" data-event-id="companies-you-follow-link"

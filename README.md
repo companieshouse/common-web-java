@@ -166,7 +166,14 @@ Fragment that is used for global errors, displays information about the error if
 
 ### userBar.html
 
-Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow and Sign out are available, as well as displaying the user's email address. The user must include ```monitorGui.url``` in the project's ```application.properties```.
+Fragment that contains several links and information for the user. Links to Your details, Your filings, Companies you follow, Basket, and Sign out are available, as well as displaying the user's email address. The user must include ```monitorGui.url``` in the project's ```application.properties```.
+
+Link visibility may be changed by setting the following Thymeleaf model attributes to `true`:
+
+* `companiesYouFollowUrl` shows the "Companies you follow" link
+* `basketWebUrl` shows the "Basket" link
+* `hideYourDetails` hides the "Your details" link
+* `hideRecentFilings` hides the "Your filings" link
 
 ## Common templates
 
