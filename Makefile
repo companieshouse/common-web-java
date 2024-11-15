@@ -22,7 +22,7 @@ ifndef version
 	$(error No version given. Aborting)
 endif
 	$(info Packaging version: $(version))
-	mvn versions:set -DnewVersion=$(version) -DgenerateBackupPoms=false
+	mvn org.codehaus.mojo:versions-maven-plugin:2.17.1:set -DnewVersion=$(version) -DgenerateBackupPoms=false
 	mvn package -DskipTests=true
 
 .PHONY: dist
