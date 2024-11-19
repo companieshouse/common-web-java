@@ -53,7 +53,7 @@
             <div th:replace="~{fragments/back-button :: backLink}"></div>
             <div th:replace="~{fragments/userBar :: userBar}"></div>
             <div th:replace="~{fragments/adminSearch :: adminSearch}"></div>
-            <div th:if="${@environment.getProperty('welshLanguage.enabled')}">
+            <div th:if="${@environment.getProperty('welshLanguage.enabled') or #httpServletRequest.getAttribute('onWelshJourney')}">
                 <div th:replace="~{fragments/localesBanner :: localesBanner}"></div>
             </div>
             <main id="content" role="main" class="govuk-main-wrapper app-main-class">
