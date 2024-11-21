@@ -21,8 +21,16 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
                            @NonNull Object handler, ModelAndView modelAndView) {
 
         // Ensure that a model/view exists
-        if ((request.getMethod().equalsIgnoreCase("GET") || request.getMethod().equalsIgnoreCase("POST"))
-                && modelAndView != null) {
+        if (modelAndView == null)
+            return;
+
+        // Do nothing if templateName already exists
+        var model = modelAndView.getModel();
+        if (model.containsKey("templateName"))
+            return;
+
+        // Look for GET and POST requests only
+        if ((request.getMethod().equalsIgnoreCase("GET") || request.getMethod().equalsIgnoreCase("POST"))) {
 
             // Exclude redirect responses
             var viewName = modelAndView.getViewName();
@@ -36,10 +44,14 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
 
             // Get the last part of the URI (assuming it matches the HTML file name)
             String[] uriParts = requestURI.split("/");
-            String templateName = uriParts[uriParts.length - 1];
+            if (uriParts.length > 0) {
+                String templateName = uriParts[uriParts.length - 1];
 
-            // Add the template name to the model
-            modelAndView.addObject("templateName", templateName);
+                if (!templateName.isBlank()) {
+                    // Add the template name to the model
+                    model.put("templateName", templateName);
+                }
+            }
         }
     }
 }
