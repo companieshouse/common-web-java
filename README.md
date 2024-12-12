@@ -71,25 +71,6 @@ messageSource.setBasenames("locales/messages", "locales/common-messages");
 
 The node.js equivalent is ```ch-node-utils``` but this is still to be fully implemented
 
-## More Info
-
-### chsBaseLayout.html
-
-"Standard" layout for CHS services.
-
-This layout expects properties/environment variables to have been set accordingly.
-
-| Property     | Environment   | Description                                        |
-|--------------|---------------|----------------------------------------------------|
-| cdn.url      | CDN_HOST      | Global environment variable for CDN                |
-| chs.url      | CHS_URL       | Global environment variable for main CHS home page | 
-| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
-| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
-
-Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
-
-The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
-
 ## Common Interceptors
 
 ### TemplateNameInterceptor
@@ -108,6 +89,81 @@ public void addInterceptors(@NonNull InterceptorRegistry registry) {
     ...
 }
 ```
+## Common Services
+
+### MatomoClient
+
+Spring component to allow the sending of Matomo tracking events or goals
+
+requires _pk_id.xxx cookie in order to obtain visitorID.
+
+This service expects properties/environment variables to have been set accordingly.
+
+| Property     | Environment   | Description                           |
+|--------------|---------------|---------------------------------------|
+| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service |
+| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service  |
+| service.name | n/a           | Name of service/application           |
+
+#### Configuration file
+```
+package uk.gov.companieshouse.authentication-service.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import uk.gov.companieshouse.common.web.service.MatomoClient;
+
+@Configuration
+public class MatomoClientConfig {
+    @Bean
+    MatomoClient getMatomoClient() {
+        return new MatomoClient();
+    }
+}
+```
+#### Example usage
+```
+...
+import uk.gov.companieshouse.common.web.service.MatomoClient;
+...
+    // declare autowired component and add to constructor
+    private final MatomoClient matomoClient;
+
+    @Autowired
+    public constructor(
+        ...
+        MatomoClient matomoClient) {
+        ...
+        this.matomoClient = matomoClient;
+    }
+
+
+    // Send a goal (int)
+    matomoClient.sendGoal(httpServletRequest.getCookies(), goalNumber);
+    
+    // Send an event - String page is name of template event is being raised for
+    sendEvent(httpServletRequest.getCookies(), "page", "event-action")
+
+```
+
+## chsBaseLayout.html
+
+"Standard" layout for CHS services.
+
+This layout expects properties/environment variables to have been set accordingly.
+
+| Property     | Environment   | Description                                        |
+|--------------|---------------|----------------------------------------------------|
+| cdn.url      | CDN_HOST      | Global environment variable for CDN                |
+| chs.url      | CHS_URL       | Global environment variable for main CHS home page | 
+| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
+| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
+
+Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
+
+The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
+
+
 
 ## Fragments
 
