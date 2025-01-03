@@ -129,12 +129,13 @@ import uk.gov.companieshouse.common.web.service.MatomoClient;
         this.matomoClient = matomoClient;
     }
 
+    // context parmaeter below is used in logger.traceContext calls within the client.
 
     // Send a goal (int)
-    matomoClient.sendGoal(httpServletRequest.getCookies(), goalNumber);
+    matomoClient.sendGoal(httpServletRequest.getCookies(), goalNumber, context);
     
     // Send an event - String page is name of template event is being raised for
-    sendEvent(httpServletRequest.getCookies(), "page", "event-action")
+    matomoClient.sendEvent(httpServletRequest.getCookies(), "page", "event-action", context)
 
 ```
 
