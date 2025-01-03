@@ -1,7 +1,6 @@
 package uk.gov.companieshouse.common.web.unit.service;
 
 import jakarta.servlet.http.Cookie;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class MatomoClientTest {
 
-    private static final MatomoClient matomoClient=new MatomoClient();
+    private static final MatomoClient matomoClient=new MatomoClient("https://matomo.platform.aws.chdev.org", 24, "common-web-java");
 
     private MockHttpServletRequest servletRequest;
 
@@ -35,19 +34,11 @@ class MatomoClientTest {
     Cookie cookie;
     @Captor
     private ArgumentCaptor<MatomoRequest> matomoRequestCaptor;
-
-    @BeforeAll
-    public static void init() {
-        matomoClient.init();
-    }
     @BeforeEach
     public void setUp() {
         servletRequest = new MockHttpServletRequest();
         Cookie[] cookies = new Cookie[]{ cookie };
         servletRequest.setCookies(cookies);
-        ReflectionTestUtils.setField(matomoClient, "PIWIK_URL", "https://matomo.platform.aws.chdev.org");
-        ReflectionTestUtils.setField(matomoClient, "PIWIK_SITE_ID", 24);
-        ReflectionTestUtils.setField(matomoClient, "SERVICE_NAME", "common-web-java");
         ReflectionTestUtils.setField(matomoClient, "tracker", mockTracker);
     }
 

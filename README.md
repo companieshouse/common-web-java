@@ -97,14 +97,6 @@ Spring component to allow the sending of Matomo tracking events or goals
 
 requires _pk_id.xxx cookie in order to obtain visitorID.
 
-This service expects properties/environment variables to have been set accordingly.
-
-| Property     | Environment   | Description                           |
-|--------------|---------------|---------------------------------------|
-| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service |
-| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service  |
-| service.name | n/a           | Name of service/application           |
-
 #### Configuration file
 ```
 package uk.gov.companieshouse.authentication-service.configuration;
@@ -117,7 +109,7 @@ import uk.gov.companieshouse.common.web.service.MatomoClient;
 public class MatomoClientConfig {
     @Bean
     MatomoClient getMatomoClient() {
-        return new MatomoClient();
+        return new MatomoClient(<piwik url>, <piwik site id>, <service name>);
     }
 }
 ```

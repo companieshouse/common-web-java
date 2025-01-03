@@ -1,13 +1,11 @@
 package uk.gov.companieshouse.common.web.service;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.Cookie;
 import org.matomo.java.tracking.MatomoRequest;
 import org.matomo.java.tracking.MatomoRequests;
 import org.matomo.java.tracking.MatomoTracker;
 import org.matomo.java.tracking.TrackerConfiguration;
 import org.matomo.java.tracking.parameters.VisitorId;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
@@ -16,24 +14,19 @@ import java.util.Optional;
 
 @Component
 public class MatomoClient {
-    @Value("${piwik.url}")
-    private String PIWIK_URL;
-    @Value("${piwik.siteid}")
-    private int PIWIK_SITE_ID;
-    @Value("${service.name}")
-    private String SERVICE_NAME;
+    private final String serviceName;
+    private final MatomoTracker tracker;
 
-    private MatomoTracker tracker;
-
-    @PostConstruct
-    public void init() {
+    public MatomoClient(String piwikUrl, int piwikSiteId, String serviceName) {
         // Create the tracker configuration
         var configuration = TrackerConfiguration.builder()
-                .apiEndpoint(URI.create(PIWIK_URL + "/matomo.php"))
-                .defaultSiteId(PIWIK_SITE_ID)
+                .apiEndpoint(URI.create(piwikUrl + "/matomo.php"))
+                .defaultSiteId(piwikSiteId)
                 .build();
         // Prepare the tracker (stateless - can be used for multiple requests)
         tracker = new MatomoTracker(configuration);
+
+        this.serviceName = serviceName;
     }
 
     public void sendEvent(Cookie[] cookies, String page, String eventAction) {
@@ -64,7 +57,7 @@ public class MatomoClient {
                 // Category naming is "service page"
                 // Action is equivalent of data-event-id in html
                 matomoRequest = MatomoRequests
-                        .event( SERVICE_NAME + " - " + page, eventAction, null, null)
+                        .event( serviceName + " - " + page, eventAction, null, null)
                         .build();
             }
 
