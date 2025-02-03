@@ -11,6 +11,18 @@
             <nav role="navigation" class="content">
                 <ul id="navigation" class="mobile-hidden">
                     <li id="signed-in-user" class="user"><span th:text="${userEmail}"></span>:</li>
+                    <li th:if="${displayUserManagementAdmin}">
+                        <a id="user_management_admin" th:href="${userManagementAdminUrl}" class="govuk-link" data-event-id="user-management-admin"
+                           th:text="#{label.user-bar.user-management-admin}">User management admin</a>
+                    </li>
+                    <li th:if="${displayYourCompanies}">
+                        <a id="your_companies" th:href="${yourCompaniesUrl}" class="govuk-link" data-event-id="your-companies"
+                           th:text="#{label.user-bar.your-companies}">Your companies</a>
+                    </li>
+                    <li th:if="${displayAuthorisedAgent}">
+                        <a id="authorised_agent" th:href="${authorisedAgentUrl}" class="govuk-link" data-event-id="authorised-agent"
+                           th:text="#{label.user-bar.authorised-agent}">Authorised agent</a>
+                    </li>
                     <li th:unless="${hideYourDetails}">
                         <a id="your_details" th:href="${yourDetailsUrl}" class="govuk-link" data-event-id="your-details"
                            th:text="#{label.user-bar.account-details}">Your details</a></li>
