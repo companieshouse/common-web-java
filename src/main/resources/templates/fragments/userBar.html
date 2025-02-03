@@ -12,7 +12,7 @@
                 <ul id="navigation" class="mobile-hidden">
                     <li id="signed-in-user" class="user"><span th:text="${userEmail}"></span>:</li>
                     <li th:if="${displayUserManagementAdmin}">
-                        <a id="user_management_admin" th:href="${uerManagementAdminUrl}" class="govuk-link" data-event-id="user-management-admin"
+                        <a id="user_management_admin" th:href="${userManagementAdminUrl}" class="govuk-link" data-event-id="user-management-admin"
                            th:text="#{label.user-bar.user-management-admin}">User management admin</a>
                     </li>
                     <li th:if="${displayYourCompanies}">
