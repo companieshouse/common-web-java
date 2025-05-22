@@ -12,16 +12,28 @@
     <link
             th:href="@{{cdnUrl}/stylesheets/chs-user-bar.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
             media="all" rel="stylesheet" type="text/css" />
-    <link
-            th:href="@{{cdnUrl}/stylesheets/govuk-frontend/v4.6.0/govuk-frontend-4.6.0.min.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
+
+    <th:block th:if="${@environment.getProperty('use.govuk.rebranding')}">
+        <link
+            th:href="@{{cdnUrl}/stylesheets/govuk-frontend/v5.10.0/govuk-frontend-5.10.0.min.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
             media="all" rel="stylesheet" type="text/css" />
-    <link
-            th:href="@{{cdnUrl}/stylesheets/govuk-link_override.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
-            media="all" rel="stylesheet" type="text/css" />
-    <link
+        <link
             rel="icon"
             th:href="@{{cdnUrl}/images/govuk-frontend/v4.6.0/images/favicon.ico(cdnUrl=${@environment.getProperty('cdn.url')})}"
             type="image/x-icon" />
+    </th:block>
+    <th:block th:unless="${@environment.getProperty('use.govuk.rebranding')}">
+        <link
+            th:href="@{{cdnUrl}/stylesheets/govuk-frontend/v4.6.0/govuk-frontend-4.6.0.min.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
+            media="all" rel="stylesheet" type="text/css" />
+        <link
+            rel="icon"
+            th:href="@{{cdnUrl}/images/govuk-frontend/v5.10.0/rebrand/favicon.ic(cdnUrl=${@environment.getProperty('cdn.url')})}"
+            type="image/x-icon" />
+    </th:block>
+    <link
+            th:href="@{{cdnUrl}/stylesheets/govuk-link_override.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
+            media="all" rel="stylesheet" type="text/css" />
     <link
             th:href="@{{cdnUrl}/stylesheets/extensions/languages-nav.css(cdnUrl=${@environment.getProperty('cdn.url')})}"
             rel="stylesheet" type="text/css" />
