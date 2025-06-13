@@ -16,17 +16,27 @@
         <groupId>uk.gov.companieshouse</groupId>
         <artifactId>companies-house-parent</artifactId>
         <version>2.1.11</version>
+        <relativePath/>
     </parent>
 
     <properties>
         <java.version>21</java.version>
         <thymeleaf-layout-dialect.version>3.3.0</thymeleaf-layout-dialect.version>
-        <spring-boot-dependencies.version>3.3.7</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.3.12</spring-boot-dependencies.version>
         <spring-boot-maven-plugin.version>3.3.7</spring-boot-maven-plugin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit-platform-surefire-provider.version>1.3.2</junit-platform-surefire-provider.version>
         <structured-logging.version>3.0.21</structured-logging.version>
+        <sonar.projectName>common-web-java</sonar.projectName>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.host.url>${CODE_ANALYSIS_HOST_URL}</sonar.host.url>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.token>${CODE_ANALYSIS_TOKEN}</sonar.token>
+        <sonar.login/>
+        <sonar.password/>
+        <sonar.projectKey>uk.gov.companieshouse:common-web-java</sonar.projectKey>
+        <sonar.java.binaries>${project.basedir}/target,${project.basedir}/target/*</sonar.java.binaries>
     </properties>
     <profiles>
         <profile>
@@ -100,18 +110,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.xmlunit</groupId>
+                    <artifactId>xmlunit-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
             <version>${sonar-maven-plugin.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.piwik.java.tracking</groupId>
-            <artifactId>matomo-java-tracker</artifactId>
-            <version>3.4.0</version>
         </dependency>
     </dependencies>
 
