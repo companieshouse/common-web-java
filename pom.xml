@@ -28,6 +28,15 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit-platform-surefire-provider.version>1.3.2</junit-platform-surefire-provider.version>
         <structured-logging.version>3.0.21</structured-logging.version>
+        <sonar.projectName>common-web-java</sonar.projectName>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.host.url>${CODE_ANALYSIS_HOST_URL}</sonar.host.url>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.token>${CODE_ANALYSIS_TOKEN}</sonar.token>
+        <sonar.login/>
+        <sonar.password/>
+        <sonar.projectKey>uk.gov.companieshouse:common-web-java</sonar.projectKey>
+        <sonar.java.binaries>${project.basedir}/target,${project.basedir}/target/*</sonar.java.binaries>
     </properties>
     <profiles>
         <profile>
