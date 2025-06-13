@@ -89,56 +89,6 @@ public void addInterceptors(@NonNull InterceptorRegistry registry) {
     ...
 }
 ```
-## Common Services
-
-### MatomoClient
-
-Spring component to allow the sending of Matomo tracking events or goals
-
-requires _pk_id.xxx cookie in order to obtain visitorID.
-
-#### Configuration file
-```
-package uk.gov.companieshouse.authentication-service.configuration;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import uk.gov.companieshouse.common.web.service.MatomoClient;
-
-@Configuration
-public class MatomoClientConfig {
-    @Bean
-    MatomoClient getMatomoClient() {
-        return new MatomoClient(<piwik url>, <piwik site id>, <service name>);
-    }
-}
-```
-#### Example usage
-```
-...
-import uk.gov.companieshouse.common.web.service.MatomoClient;
-...
-    // declare autowired component and add to constructor
-    private final MatomoClient matomoClient;
-
-    @Autowired
-    public constructor(
-        ...
-        MatomoClient matomoClient) {
-        ...
-        this.matomoClient = matomoClient;
-    }
-
-    // context parmaeter below is used in logger.traceContext calls within the client.
-
-    // Send a goal (int)
-    matomoClient.sendGoal(httpServletRequest.getCookies(), goalNumber, context);
-    
-    // Send an event - String page is name of template event is being raised for
-    matomoClient.sendEvent(httpServletRequest.getCookies(), "page", "event-action", context)
-
-```
-
 ## chsBaseLayout.html
 
 "Standard" layout for CHS services.
