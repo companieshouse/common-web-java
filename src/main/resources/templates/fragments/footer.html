@@ -105,7 +105,7 @@
                     class="govuk-footer__link govuk-footer__copyright-logo"
                     data-event-id="crown-copyright-footer-link"
                     href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
-                    th:style="'background-image: url(' + ${cdnUrl} + '/images/govuk-crest.png);'"
+                    th:style="${govukFrontendRebrand} ? null : 'background-image: url(' + ${cdnUrl} + '/images/govuk-crest.png);'"
                     data-th-text="#{label.footer.crownCopyright}">
                 </a>
             </div>
