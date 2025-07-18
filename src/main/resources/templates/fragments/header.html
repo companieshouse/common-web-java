@@ -57,13 +57,29 @@
                             </a>
                         </div>
                     </th:block>
-                    <div class="govuk-header__content" th:if="${headerText != null}">
-                        <a id="proposition-name"
-                        data-event-id="service-header-link"
-                        th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name" th:text='${headerText}'></a>
-                    </div>
+                    <th:block th:unless="${govukFrontendRebrand}">
+                        <div class="govuk-header__content" th:if="${headerText != null}">
+                            <a id="proposition-name"
+                            data-event-id="service-header-link"
+                            th:href="${headerURL}" class="govuk-header__link govuk-header__link--service-name" th:text='${headerText}'></a>
+                        </div>
+                    </th:block>
                 </div>
             </header>
+            <th:block th:if="${govukFrontendRebrand}">
+                <section aria-label="Service information" class="govuk-service-navigation"
+                    data-module="govuk-service-navigation">
+                    <div class="govuk-width-container">
+                        <div class="govuk-service-navigation__container">
+                            <span class="govuk-service-navigation__service-name">
+                                <a  th:href="${headerURL != null ? headerURL : '/'}"
+                                    class="govuk-service-navigation__link"
+                                    th:text="${headerText != null ? headerText : 'Find and update company information'}"></a>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </th:block>
         </th:block>
     </body>
 </html>
