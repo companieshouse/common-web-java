@@ -20,7 +20,6 @@ public class TemplateNameInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, @NonNull HttpServletResponse response,
                            @NonNull Object handler, ModelAndView modelAndView) {
 
-        // Ensure that a model/view exists
         if (modelAndView == null)
             return;
 
