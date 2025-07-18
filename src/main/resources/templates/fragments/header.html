@@ -1,6 +1,5 @@
 <th:block th:with="
             cdnUrl=${@environment.getProperty('cdn.url')};,
-            chsUrl=${@environment.getProperty('chs.url')},
             govukFrontendRebrand=${@environment.getProperty('FEATURE_GOVUK_REBRAND') != null ?
                                   (@environment.getProperty('FEATURE_GOVUK_REBRAND') == '1' ? true : false) : false}">
 <!DOCTYPE html>
@@ -15,7 +14,7 @@
                     <th:block th:unless="${govukFrontendRebrand}">
                         <div class="header-global">
                             <div class="govuk-header__logo" style="width:33.33%">
-                                <a th:href="${chsUrl}" title="Go to the companies house homepage" id="logo"
+                                <a th:href="${@environment.getProperty('chs.url')}" title="Go to the companies house homepage" id="logo"
                                 class="govuk-header__link govuk-header__link--homepage"
                                 data-event-id="companies-house-header-link"
                                 style="display: flex; align-items: center;">
@@ -27,7 +26,7 @@
                     </th:block>
                     <th:block th:if="${govukFrontendRebrand}">
                         <div class="govuk-header__logo">
-                            <a th:href="${chsUrl}" title="Go to the companies house homepage" id="logo"
+                            <a th:href="${@environment.getProperty('chs.url')}" title="Go to the companies house homepage" id="logo"
                                 class="govuk-header__link govuk-header__link--homepage"
                                 data-event-id="companies-house-header-link">
                                 <svg

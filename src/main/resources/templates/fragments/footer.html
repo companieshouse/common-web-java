@@ -49,19 +49,19 @@
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="cookies-link"
                            data-event-id="cookies-footer-link"
-                           th:href="@{{chsUrl}/help/cookies}"
+                           th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}"
                            data-th-text="#{label.footer.cookies}"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="contact-us-link"
                            data-event-id="contact-us-footer-link"
-                           th:href="@{{chsUrl}/help/contact-us}"
+                           th:href="@{{chsUrl}/help/contact-us(chsUrl=${@environment.getProperty('chs.url')})}"
                            data-th-text="#{label.footer.contact}" target="_blank"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="accessibility-statement-link"
                            data-event-id="accessibility-statement-footer-link"
-                           th:href="@{{chsUrl}/help/accessibility-statement}"
+                           th:href="@{{chsUrl}/help/accessibility-statement(chsUrl=${@environment.getProperty('chs.url')})}"
                            data-th-text="#{label.footer.accessibility}"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
