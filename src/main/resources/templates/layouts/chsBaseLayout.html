@@ -5,7 +5,7 @@
             govukFrontendVersion=${@environment.getProperty('GOVUK_FRONTEND_VERSION') != null ?
                                    @environment.getProperty('GOVUK_FRONTEND_VERSION') : '4.6.0'},
             govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
-                                    @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : ''},
+                                    @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : '/rebrand'},
             cdnGOVcommonPath=${'govuk-frontend/v' + govukFrontendVersion},
             cdnGOVimages=${cdnUrl + '/images/'      + cdnGOVcommonPath + govukFrontendPathname},
             cdnGOVstatic=${cdnUrl + '/static/'      + cdnGOVcommonPath + govukFrontendPathname},
