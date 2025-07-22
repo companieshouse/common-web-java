@@ -1,0 +1,10 @@
+<th:block th:fragment="breadCrumbs(breadcrumbOptions)">
+
+    <nav class="govuk-breadcrumbs" th:classappend="${(breadcrumbOptions.inverseColour ? 'govuk-breadcrumbs--inverse' : '') + ' ' + (breadcrumbOptions.collapseOnMobile ? 'govuk-breadcrumbs--collapsed' : '')}" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item" th:each="breadcrumb : ${breadcrumbOptions.breadcrumbs}">
+                <a class="govuk-breadcrumbs__link" th:href="${breadcrumb.url}" th:text="${breadcrumb.label}"></a>
+            </li>
+        </ol>
+    </nav>
+</th:block>
