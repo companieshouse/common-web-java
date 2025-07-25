@@ -23,8 +23,8 @@
     <meta charset="UTF-8">
     <title layout:title-pattern="$CONTENT_TITLE"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <th:block th:if="${govukFrontendRebrand}">
-        <meta name="theme-color" content="#1d70b8">
+    <meta name="theme-color" th:content="${govukFrontendRebrand} ? '#1d70b8' : '#0b0c0c'">
+    <th:block th:if="${govukFrontendMajorOver4}">
         <meta property="og:image" th:content="@{${cdnGOVimages + '/govuk-opengraph-image.png'}}">
         <link rel="icon" sizes="48x48"   th:href="@{${cdnGOVimages + '/favicon.ico'}}"        type="image/x-icon">
         <link rel="icon" sizes="any"     th:href="@{${cdnGOVimages + '/favicon.svg'}}"         type="image/svg+xml">
@@ -34,8 +34,7 @@
         <link rel="icon" sizes="512x512" th:href="@{${cdnGOVimages + '/govuk-icon-512.png'}}"  type="image/png">
         <link rel="manifest"             th:href="@{${cdnGOVstatic + '/manifest.json'}}">
     </th:block>
-    <th:block th:unless="${govukFrontendRebrand}">
-        <meta name="theme-color" content="#0b0c0c">
+    <th:block th:unless="${govukFrontendMajorOver4}">
         <meta
             property="og:image"
             th:content="@{${cdnUrl + '/images/govuk-opengraph-image.png'}}">
