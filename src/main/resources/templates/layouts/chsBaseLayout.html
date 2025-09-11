@@ -6,6 +6,8 @@
                                    @environment.getProperty('GOVUK_FRONTEND_VERSION') : '4.6.0'},
             govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
                                     @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : '/rebrand'},
+            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') != null ?
+                                   (@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') == '1' ? true : false) : false},
             cdnGOVcommonPath=${'govuk-frontend/v' + govukFrontendVersion},
             govukFrontendMajorOver4=${govukFrontendVersion != null and T(java.lang.Integer).parseInt(govukFrontendVersion.replaceAll('^([0-9]+).*', '$1')) > 4},
             cdnGOVimages=${cdnUrl + '/images/'      + cdnGOVcommonPath + govukFrontendPathname},
@@ -33,6 +35,7 @@
         <link rel="icon" sizes="192x192" th:href="@{${cdnGOVimages + '/govuk-icon-192.png'}}"  type="image/png">
         <link rel="icon" sizes="512x512" th:href="@{${cdnGOVimages + '/govuk-icon-512.png'}}"  type="image/png">
         <link rel="manifest"             th:href="@{${cdnGOVstatic + '/manifest.json'}}">
+
     </th:block>
     <th:block th:unless="${govukFrontendMajorOver4}">
         <meta
@@ -57,6 +60,11 @@
     <link
             th:href="@{${cdnUrl + '/stylesheets/extensions/languages-nav.css'}}"
             rel="stylesheet" type="text/css" />
+    <th:block th:if="${useCHHeaderOverGovuk}">
+        <link
+            th:href="@{${cdnUrl + '/stylesheets/components/header.css'}}"
+            rel="stylesheet" type="text/css" />
+    </th:block>
 
     <script th:inline="javascript">
         window.SERVICE_NAME = [[${serviceName}]]
