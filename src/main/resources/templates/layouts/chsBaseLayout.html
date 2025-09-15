@@ -1,7 +1,5 @@
 <th:block th:with="
             cdnUrl=${@environment.getProperty('cdn.url')},
-            govukFrontendRebrand=${@environment.getProperty('FEATURE_GOVUK_REBRAND') != null ?
-                                  (@environment.getProperty('FEATURE_GOVUK_REBRAND') == '1' ? true : false) : false},
             govukFrontendVersion=${@environment.getProperty('GOVUK_FRONTEND_VERSION') != null ?
                                    @environment.getProperty('GOVUK_FRONTEND_VERSION') : '4.6.0'},
             govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
@@ -17,7 +15,7 @@
 
 <html lang="en"
       class="govuk-template app-html-class"
-      th:classappend="${govukFrontendRebrand} ? 'govuk-template--rebranded' : ''"
+      th:classappend="govuk-template--rebranded"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
@@ -25,7 +23,7 @@
     <meta charset="UTF-8">
     <title layout:title-pattern="$CONTENT_TITLE"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" th:content="${govukFrontendRebrand} ? '#1d70b8' : '#0b0c0c'">
+    <meta name="theme-color" th:content="'#1d70b8'">
     <th:block th:if="${govukFrontendMajorOver4}">
         <meta property="og:image" th:content="@{${cdnGOVimages + '/govuk-opengraph-image.png'}}">
         <link rel="icon" sizes="48x48"   th:href="@{${cdnGOVimages + '/favicon.ico'}}"        type="image/x-icon">
