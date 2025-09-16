@@ -1,7 +1,7 @@
 <th:block th:with="
             cdnUrl=${@environment.getProperty('cdn.url')},
             govukFrontendVersion=${@environment.getProperty('GOVUK_FRONTEND_VERSION') != null ?
-                                   @environment.getProperty('GOVUK_FRONTEND_VERSION') : '4.6.0'},
+                                   @environment.getProperty('GOVUK_FRONTEND_VERSION') : '5.11.0'},
             govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
                                     @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : '/rebrand'},
             useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') != null ?

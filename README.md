@@ -55,7 +55,7 @@ Projects using this must include the standard base layout by the use of this lay
 ```
 ```serviceName``` should be set to the name of the service using the template e.g. ```oauth-web``` in this example
 
-## Description 
+## Description
 
 A common-web dependency to contain reusable resources and fragments for SpringBoot web development, e.g: back-buttons,
 headers, footers, continue buttons, etc.
@@ -89,6 +89,20 @@ public void addInterceptors(@NonNull InterceptorRegistry registry) {
     ...
 }
 ```
+## GOV.UK Rebrand
+
+Version 4.0 introduces a breaking change. It aligns with the GDS rebrand (header/foother/...)
+[v5.11.x](https://github.com/alphagov/govuk-frontend/releases/tag/v5.11.0).
+
+It also allows to render both the full GOV.UK header or a CH header for internal non-GOV.UK services _(by setting the env var `USE_CH_HEADER_OVER_GOVUK=1`)_
+
+## Environment vars
+
+| Name                      | Description                                    | Example  | Required | Default  |
+|---------------------------|------------------------------------------------|----------|----------|----------|
+| `GOVUK_FRONTEND_VERSION`  | GOVUK FE version to use (and available via CDN)| `4.6.0`  | N        | `5.11.0` |
+| `USE_CH_HEADER_OVER_GOVUK`| to choose CH header vs GOV.UK                  | `...=1`  | N        | `0`      |
+
 ## chsBaseLayout.html
 
 "Standard" layout for CHS services.
@@ -98,7 +112,7 @@ This layout expects properties/environment variables to have been set accordingl
 | Property     | Environment   | Description                                        |
 |--------------|---------------|----------------------------------------------------|
 | cdn.url      | CDN_HOST      | Global environment variable for CDN                |
-| chs.url      | CHS_URL       | Global environment variable for main CHS home page | 
+| chs.url      | CHS_URL       | Global environment variable for main CHS home page |
 | piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
 | piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
 
@@ -148,7 +162,7 @@ Fragment used by ```localesBanner``` to add language to any url
 
 Fragment that provides a button to go backwards in the journey. Requires a ```backLink``` parameter to be set.
 
-If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button 
+If the ```backLink``` model attribute is absent, the 'back' link won't appear. If set, it should contain href for back button
 
 ### footer.html
 
@@ -157,7 +171,7 @@ Fragment that provides useful links to the user below the main page content. Lin
 User's projects must include ```cdn.url```, ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
 
 ---
-### Remaining fragments not yet fully integrated into chsBaseLayout 
+### Remaining fragments not yet fully integrated into chsBaseLayout
 
 ### globalErrors.html
 
