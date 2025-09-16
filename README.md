@@ -91,7 +91,7 @@ public void addInterceptors(@NonNull InterceptorRegistry registry) {
 ```
 ## GOV.UK Rebrand
 
-Version 4.0 introduces a breaking change. It aligns with the GDS rebrand (header/foother/...)
+Version 4.0 introduces a breaking change. It aligns with the GDS rebrand (header/footer/...)
 [v5.11.x](https://github.com/alphagov/govuk-frontend/releases/tag/v5.11.0).
 
 It also allows to render both the full GOV.UK header or a CH header for internal non-GOV.UK services _(by setting the env var `USE_CH_HEADER=1`)_
