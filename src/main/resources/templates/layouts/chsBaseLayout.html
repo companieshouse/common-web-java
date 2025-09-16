@@ -4,8 +4,8 @@
                                    @environment.getProperty('GOVUK_FRONTEND_VERSION') : '5.11.0'},
             govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
                                     @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : '/rebrand'},
-            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') != null ?
-                                   (@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') == '1' ? true : false) : false},
+            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER') != null ?
+                                   (@environment.getProperty('USE_CH_HEADER') == '1' ? true : false) : false},
             cdnGOVcommonPath=${'govuk-frontend/v' + govukFrontendVersion},
             govukFrontendMajorOver4=${govukFrontendVersion != null and T(java.lang.Integer).parseInt(govukFrontendVersion.replaceAll('^([0-9]+).*', '$1')) > 4},
             cdnGOVimages=${cdnUrl + '/images/'      + cdnGOVcommonPath + govukFrontendPathname},

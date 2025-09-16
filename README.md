@@ -94,14 +94,14 @@ public void addInterceptors(@NonNull InterceptorRegistry registry) {
 Version 4.0 introduces a breaking change. It aligns with the GDS rebrand (header/foother/...)
 [v5.11.x](https://github.com/alphagov/govuk-frontend/releases/tag/v5.11.0).
 
-It also allows to render both the full GOV.UK header or a CH header for internal non-GOV.UK services _(by setting the env var `USE_CH_HEADER_OVER_GOVUK=1`)_
+It also allows to render both the full GOV.UK header or a CH header for internal non-GOV.UK services _(by setting the env var `USE_CH_HEADER=1`)_
 
 ## Environment vars
 
 | Name                      | Description                                    | Example  | Required | Default  |
 |---------------------------|------------------------------------------------|----------|----------|----------|
 | `GOVUK_FRONTEND_VERSION`  | GOVUK FE version to use (and available via CDN)| `4.6.0`  | N        | `5.11.0` |
-| `USE_CH_HEADER_OVER_GOVUK`| to choose CH header vs GOV.UK                  | `...=1`  | N        | `0`      |
+| `USE_CH_HEADER`           | to choose CH header vs GOV.UK                  | `...=1`  | N        | `0`      |
 
 ## chsBaseLayout.html
 

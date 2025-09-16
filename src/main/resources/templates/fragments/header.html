@@ -1,7 +1,7 @@
 <th:block th:with="
             cdnUrl=${@environment.getProperty('cdn.url')};,
-            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') != null ?
-                                   (@environment.getProperty('USE_CH_HEADER_OVER_GOVUK') == '1' ? true : false) : false},">
+            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER') != null ?
+                                   (@environment.getProperty('USE_CH_HEADER') == '1' ? true : false) : false},">
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
     <head>
