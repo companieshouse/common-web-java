@@ -1,5 +1,4 @@
 <th:block th:with="
-            cdnUrl=${@environment.getProperty('cdn.url')},
             chsUrl=${@environment.getProperty('chs.url')}">
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
@@ -81,7 +80,6 @@
                     class="govuk-footer__link govuk-footer__copyright-logo"
                     data-event-id="crown-copyright-footer-link"
                     href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
-                    th:style="'background-image: url(' + ${cdnUrl} + '/images/govuk-crest.png);'"
                     data-th-text="#{label.footer.crownCopyright}">
                 </a>
             </div>
