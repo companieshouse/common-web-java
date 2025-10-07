@@ -146,6 +146,8 @@ Configurable fragment for alpha/beta phase banner above the main page content. U
 
 ```phaseBannerLink``` if set, a feedback link will be included in the phase banner with URL = phaseBannerLink
 
+```phaseBannerNewContent``` set to ```Yes``` to use the new content: ```This is a new service. Help us improve it and give your feedback (opens in new tab)```. Do not set to use the trial content: ```This is a trial service - your feedback will help us to improve it.```
+
 To set ```phaseBanner``` for all screens, use ```@ModelAttribute``` in the GlobalController class using ```@ControllerAdvice```
 
 ### localesBanner.html
