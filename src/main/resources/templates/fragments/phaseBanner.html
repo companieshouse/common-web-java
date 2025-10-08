@@ -10,11 +10,16 @@
           <strong class="govuk-tag govuk-phase-banner__content__tag" th:text="${phaseBanner}"></strong>
 
           <span class="govuk-phase-banner__text" th:if="${phaseBannerLink != null}">
-            <span th:text="#{label.phaseBanner.thisIsATrialServiceYour}"></span>
-            <a class="govuk-link" th:href="${phaseBannerLink}"
+            <span th:if="${phaseBannerNewContent == null}" th:text="#{label.phaseBanner.thisIsATrialServiceYour}"></span>
+            <a th:if="${phaseBannerNewContent == null}" class="govuk-link" th:href="${phaseBannerLink}"
                data-event-id="feedback-link"
                th:text="#{label.phaseBanner.feedback}">feedback</a>
-            <span th:text="#{label.phaseBanner.willHelpUsToImproveIt}"></span>
+            <span th:if="${phaseBannerNewContent == null}" th:text="#{label.phaseBanner.willHelpUsToImproveIt}"></span>
+            <span th:if="${phaseBannerNewContent == 'Yes'}" th:text="#{label.phaseBanner.thisIsANewService}"></span>
+            <a th:if="${phaseBannerNewContent == 'Yes'}" class="govuk-link" th:href="${phaseBannerLink}"
+               data-event-id="feedback-link"
+               th:text="#{label.phaseBanner.giveYourFeedback}"
+               th:target="_blank"></a>
           </span>
         </p>
       </div>
