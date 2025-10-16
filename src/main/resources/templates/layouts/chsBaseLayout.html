@@ -99,7 +99,7 @@
                     <div th:replace="~{fragments/back-button :: backLink}"></div>
                 </div>
             </div>
-            <div th:if="${switchUserBarAndBacklink == null}">
+            <div th:unless="${switchUserBarAndBacklink != null}">>
                 <div th:replace="~{fragments/back-button :: backLink}"></div>
                 <div th:replace="~{fragments/userBar :: userBar}"></div>
             </div>
