@@ -16,9 +16,6 @@
                     <div th:if="${errorMessage}"  th:text="${errorMessage}" style='color:red;'>Error</div>
                     <input class="submit" type="submit" id="admin-search-btn" value="Search"/>
                 </form>
-                <a th:if="${hasAdminRole}" th:href="@{/admin/roles}">Manage Roles</a>&nbsp;
-                <a th:if="${hasAdminQueue}" th:href="${manageQueueUrl}">Manage Queues</a>&nbsp;
-                <a th:if="${hasAdminMonitor}" th:href="${manageMonitorUrl}">Manage Monitor</a>&nbsp;
                 <hr>
             </div>
         </th:block>
