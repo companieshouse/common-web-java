@@ -13,7 +13,7 @@
             cdnGOVjs=${cdnUrl     + '/javascripts/' + cdnGOVcommonPath + '/govuk-frontend-' + govukFrontendVersion + '.min.js'}">
 <!DOCTYPE html>
 
-<html lang="en"
+<html th:lang="#{label.html.lang}"
       class="govuk-template app-html-class"
       th:classappend="govuk-template--rebranded"
       xmlns:th="http://www.thymeleaf.org"
