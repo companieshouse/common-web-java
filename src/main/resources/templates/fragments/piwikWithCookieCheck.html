@@ -26,7 +26,7 @@
           Reject analytics cookies
         </button>
         <a class="govuk-link" data-event-id="view-cookies"
-           th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">View cookies</a>
+           th:href="@{{chsUrl}/help/cookies}">View cookies</a>
       </div>
     </div>
     <div id="accepted-cookies-message" class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
@@ -35,7 +35,7 @@
           <div class="govuk-cookie-banner__content">
             <p class="govuk-body">You've accepted analytics cookies. You can
               <a class="govuk-link" data-event-id="change-accepted-cookies"
-                 th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">
+                 th:href="@{{chsUrl}/help/cookies}">
                 change your cookie settings
               </a>
               at any time.
@@ -55,7 +55,7 @@
           <div class="govuk-cookie-banner__content">
              <p class="govuk-body">You've rejected analytics cookies. You can
                <a class="govuk-link" data-event-id="change-cookie-settings"
-                  th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}">
+                  th:href="@{{chsUrl}/help/cookies}">
                  change your cookie settings
                </a>
                at any time.

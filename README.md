@@ -98,25 +98,47 @@ It also allows to render both the full GOV.UK header or a CH header for internal
 
 ## Environment vars
 
-| Name                      | Description                                    | Example  | Required | Default  |
-|---------------------------|------------------------------------------------|----------|----------|----------|
-| `GOVUK_FRONTEND_VERSION`  | GOVUK FE version to use (and available via CDN)| `4.6.0`  | N        | `5.11.0` |
-| `USE_CH_HEADER`           | to choose CH header vs GOV.UK                  | `...=1`  | N        | `0`      |
+Thymeleaf 3.1 breaking change (shipped with Spring Boot 3 / Spring 6). Thymeleaf 3.1 restricted access to certain expression objects, and the recommended alternative is to add the specific data your templates need to the model at the controller level, either via model.addAttribute(...), @ModelAttribute, or @ControllerAdvice. Thymeleaf
+The cleanest approach for properties needed across many templates is a @ControllerAdvice:
+```
+java@ControllerAdvice
+public class GlobalModelAttributes {
+
+    @Value("${your.property.key}")
+    private String yourProperty;
+
+    @ModelAttribute("yourProperty")
+    public String yourProperty() {
+        return yourProperty;
+    }
+}
+```
+Then in your template:
+```
+html<span th:text="${yourProperty}"></span>
+```
+
+So from Version 5.0, the following application properties are checked to be added as model attributes for the standard layout and fragments to work as expected:
+
+| Property               | Environment Variable     | Model attribute      | Description                                     | Example | Required | Default  |
+|------------------------|--------------------------|----------------------|-------------------------------------------------|---------|----------|----------|
+| govuk.frontend.version | `GOVUK_FRONTEND_VERSION` | govukFrontendVersion | GOVUK FE version to use (and available via CDN) | `4.6.0` | N        | `5.11.0` |
+| use.ch.header          | `USE_CH_HEADER`          | useChHeader          | to choose CH header vs GOV.UK                   | `...=1` | N        | `0`      |
 
 ## chsBaseLayout.html
 
 "Standard" layout for CHS services.
 
-This layout expects properties/environment variables to have been set accordingly.
+**As per note above, the following application properties MUST be set accordingly.**
 
-| Property     | Environment   | Description                                        |
-|--------------|---------------|----------------------------------------------------|
-| cdn.url      | CDN_HOST      | Global environment variable for CDN                |
-| chs.url      | CHS_URL       | Global environment variable for main CHS home page |
-| piwik.url    | PIWIK_URL     | Relevant Piwik/Matomo url for service              |
-| piwik.siteId | PIWIK_SITE_ID | Relevant Piwik/Matomo id for service               |
+| Property     | Environment     | Model Attribute | Description                                        |
+|--------------|-----------------|-----------------|----------------------------------------------------|
+| cdn.url      | `CDN_HOST`      | cdnUrl          | Global environment variable for CDN                |
+| chs.url      | `CHS_URL`       | chsUrl          | Global environment variable for main CHS home page |
+| piwik.url    | `PIWIK_URL`     | piwikUrl        | Relevant Piwik/Matomo url for service              |
+| piwik.siteId | `PIWIK_SITE_ID` | piwikSiteId     | Relevant Piwik/Matomo id for service               |
 
-Requires ```serviceName``` variable to be set to the name of the service using the template as described above.
+Also requires ```serviceName``` variable to be set to the name of the service using the template as described above.
 
 The following fragments are used by this baseLayout depending on the setting of variables described in each fragment.
 
@@ -126,13 +148,13 @@ The following fragments are used by this baseLayout depending on the setting of 
 
 ### piwikWithCookieCheck.html
 
-CHS cookie permissions banner. Requires ```chs.url``` property listed above.
+CHS cookie permissions banner. Requires ```chsUrl``` model attribute listed above.
 
 ### header.html
 
-Standard header for CHS services. Requires ```cdn.url``` & ```chs.url``` properties listed above.
+Standard header for CHS services. Requires ```cdnUrl``` & ```chsUrl``` model attributes listed above.
 
-Optional variables:
+Optional model attributes for the header:
 
 ```headerText``` - if defined is displayed in header as the service name
 
@@ -170,7 +192,12 @@ If the ```backLink``` model attribute is absent, the 'back' link won't appear. I
 
 Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
 
-User's projects must include ```cdn.url```, ```chs.url``` and ```developer.url``` urls in their ```application.properties```.
+**As per notes above, the following application properties MUST be set accordingly.**
+
+| Property      | Environment Variable | Model attribute | Description             | Example                                                   | Required | Default |
+|---------------|----------------------|-----------------|-------------------------|-----------------------------------------------------------|----------|---------|
+| contactUsUrl  | `CONTACT_US_URL`     | contactUsUrl    | Link to contact us page | `https://www.gov.uk/find-contact-details-companies-house` | Y        |         |
+| developer.url | `DEVELOPER_URL`      | developerUrl    | Link to developer hub   | `https://developer.company-information.service.gov.uk`    | Y        |         |
 
 ---
 ### Remaining fragments not yet fully integrated into chsBaseLayout

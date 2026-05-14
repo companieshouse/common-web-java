@@ -1,5 +1,3 @@
-<th:block th:with="
-            chsUrl=${@environment.getProperty('chs.url')}">
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -46,25 +44,25 @@
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="cookies-link"
                            data-event-id="cookies-footer-link"
-                           th:href="@{{chsUrl}/help/cookies(chsUrl=${@environment.getProperty('chs.url')})}"
+                           th:href="${chsUrl + '/help/cookies'}"
                            data-th-text="#{label.footer.cookies}"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="contact-us-link"
                            data-event-id="contact-us-footer-link"
-                           th:href="${@environment.getProperty('contact.us.url')}"
+                           th:href="${contactUsUrl}"
                            data-th-text="#{label.footer.contact}" target="_blank"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="accessibility-statement-link"
                            data-event-id="accessibility-statement-footer-link"
-                           th:href="@{{chsUrl}/help/accessibility-statement(chsUrl=${@environment.getProperty('chs.url')})}"
+                           th:href="${chsUrl + '/help/accessibility-statement'}"
                            data-th-text="#{label.footer.accessibility}"></a>
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="developer-link"
                            data-event-id="developer-footer-link"
-                           th:href="@{{developerUrl}/(developerUrl=${@environment.getProperty('developer.url')})}"
+                           th:href="${developerUrl}"
                            data-th-text="#{label.footer.developers}" target="_blank"></a>
                     </li>
                 </ul>
@@ -88,4 +86,3 @@
 </footer>
 </body>
 </html>
-</th:block>
