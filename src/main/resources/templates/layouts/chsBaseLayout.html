@@ -1,11 +1,5 @@
 <th:block th:with="
-            cdnUrl=${@environment.getProperty('cdn.url')},
-            govukFrontendVersion=${@environment.getProperty('GOVUK_FRONTEND_VERSION') != null ?
-                                   @environment.getProperty('GOVUK_FRONTEND_VERSION') : '5.11.0'},
-            govukFrontendPathname=${@environment.getProperty('GOVUK_FRONTEND_PATHNAME') != null ?
-                                    @environment.getProperty('GOVUK_FRONTEND_PATHNAME') : '/rebrand'},
-            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER') != null ?
-                                   (@environment.getProperty('USE_CH_HEADER') == '1' ? true : false) : false},
+            useCHHeaderOverGovuk=${useChHeader != null ? useChHeader : false},
             cdnGOVcommonPath=${'govuk-frontend/v' + govukFrontendVersion},
             govukFrontendMajorOver4=${govukFrontendVersion != null and T(java.lang.Integer).parseInt(govukFrontendVersion.replaceAll('^([0-9]+).*', '$1')) > 4},
             cdnGOVimages=${cdnUrl + '/images/'      + cdnGOVcommonPath + govukFrontendPathname},
@@ -66,8 +60,8 @@
 
     <script th:inline="javascript">
         window.SERVICE_NAME = [[${serviceName}]]
-        window.PIWIK_URL = [[${@environment.getProperty('piwik.url')}]];
-        window.PIWIK_SITE_ID = [[${@environment.getProperty('piwik.siteId')}]];
+        window.PIWIK_URL = [[${piwikUrl}]];
+        window.PIWIK_SITE_ID = [[${piwikSiteId}]];
     </script>
 </head>
 <body class="govuk-template__body app-body-class">

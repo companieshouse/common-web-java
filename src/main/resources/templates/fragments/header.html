@@ -1,7 +1,5 @@
 <th:block th:with="
-            cdnUrl=${@environment.getProperty('cdn.url')};,
-            useCHHeaderOverGovuk=${@environment.getProperty('USE_CH_HEADER') != null ?
-                                   (@environment.getProperty('USE_CH_HEADER') == '1' ? true : false) : false},">
+            useCHHeaderOverGovuk=${useChHeader != null ? useChHeader : false}">
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
     <head>
@@ -64,7 +62,7 @@
                 <div class="govuk-width-container">
                     <div class="govuk-service-navigation__container">
                         <span class="govuk-service-navigation__service-name">
-                            <a  th:href="${headerURL != null ? headerURL : (headerText != null ? '#' : '/')}"
+                            <a  th:href="${headerURL != null ? headerURL : (headerText != null ? '#' : chsUrl)}"
                                 class="govuk-service-navigation__link"
                                 th:text="${headerText != null ? headerText : 'Find and update company information'}"></a>
                         </span>
