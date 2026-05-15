@@ -99,26 +99,30 @@ It also allows to render both the full GOV.UK header or a CH header for internal
 ## Environment vars
 
 Thymeleaf 3.1 breaking change (shipped with Spring Boot 3 / Spring 6). Thymeleaf 3.1 restricted access to certain expression objects, and the recommended alternative is to add the specific data your templates need to the model at the controller level, either via model.addAttribute(...), @ModelAttribute, or @ControllerAdvice. Thymeleaf
-The cleanest approach for properties needed across many templates is a @ControllerAdvice:
-```
-java@ControllerAdvice
-public class GlobalModelAttributes {
+So from Version 5.0, the following application properties are checked and added as model attributes for the standard layout and fragments to work as expected.
 
-    @Value("${your.property.key}")
-    private String yourProperty;
-
-    @ModelAttribute("yourProperty")
-    public String yourProperty() {
-        return yourProperty;
-    }
-}
+The best way is to set these properties in the service's ```application.properties``` or ```application.yaml``` files, but they can also be set as environment variables. If not set, the default values will be used where applicable, but some properties are required and must be set by the service using the library:
+#### application.properties:
 ```
-Then in your template:
+# Properties required by common-web-java
+commonweb.cdn-url=${CDN_HOST}
+commonweb.chs-url=${CHS_URL}
+commonweb.piwik-url=${PIWIK_URL}
+commonweb.piwik-site-id=${PIWIK_SITE_ID}
+commonweb.contactUsUrl=${CONTACT_US_URL}
+commonweb.developer-url=${DEVELOPER_URL}
 ```
-html<span th:text="${yourProperty}"></span>
+#### application.yml:
 ```
-
-So from Version 5.0, the following application properties are checked to be added as model attributes for the standard layout and fragments to work as expected:
+# Properties required by common-web-java
+commonweb:
+  cdn-url: ${CDN_HOST}
+  chs-url: ${CHS_URL}
+  piwik-url: ${PIWIK_URL}
+  piwik-site-id: ${PIWIK_SITE_ID}
+  contactUsUrl: ${CONTACT_US_URL}
+  developer-url: ${DEVELOPER_URL}
+```
 
 | Property               | Environment Variable     | Model attribute      | Description                                     | Example | Required | Default  |
 |------------------------|--------------------------|----------------------|-------------------------------------------------|---------|----------|----------|
@@ -159,6 +163,8 @@ Optional model attributes for the header:
 ```headerText``` - if defined is displayed in header as the service name
 
 ```headerURL``` - must be defined if ```headerText``` exists as it defines the link used if user clicks on ```headerText```
+
+If both are missing, will default to "Find and update company information" with a link chsUrl.
 
 ### phaseBanner.html
 
