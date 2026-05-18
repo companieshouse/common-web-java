@@ -105,7 +105,7 @@ The best way is to set these properties in the service's ```application.properti
 #### application.properties:
 ```
 # Properties required by common-web-java
-commonweb.cdn-url=${CDN_HOST}
+commonweb.cdn-url=//${CDN_HOST}
 commonweb.chs-url=${CHS_URL}
 commonweb.piwik-url=${PIWIK_URL}
 commonweb.piwik-site-id=${PIWIK_SITE_ID}
@@ -116,7 +116,7 @@ commonweb.developer-url=${DEVELOPER_URL}
 ```
 # Properties required by common-web-java
 commonweb:
-  cdn-url: ${CDN_HOST}
+  cdn-url: //${CDN_HOST}
   chs-url: ${CHS_URL}
   piwik-url: ${PIWIK_URL}
   piwik-site-id: ${PIWIK_SITE_ID}
