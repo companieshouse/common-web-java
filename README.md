@@ -123,24 +123,30 @@ commonweb:
   contactUsUrl: ${CONTACT_US_URL}
   developer-url: ${DEVELOPER_URL}
 ```
+**NOTE:** the above properties are made available as global model attributes for all templates and fragments,
+so they can be used in any template or fragment without needing to be set in the controller.
 
-| Property               | Environment Variable     | Model attribute      | Description                                     | Example | Required | Default  |
-|------------------------|--------------------------|----------------------|-------------------------------------------------|---------|----------|----------|
-| govuk.frontend.version | `GOVUK_FRONTEND_VERSION` | govukFrontendVersion | GOVUK FE version to use (and available via CDN) | `4.6.0` | N        | `5.11.0` |
-| use.ch.header          | `USE_CH_HEADER`          | useChHeader          | to choose CH header vs GOV.UK                   | `...=1` | N        | `0`      |
+The names of the equivalent global model attributes are shown in the tables below.
+
+For example, ```${chsUrl}``` will always be available in any template or fragment without needing to be added in the controller code.
+
+| Property               | Environment variable     | Global model attribute | Description                                     | Example | Required | Default  |
+|------------------------|--------------------------|------------------------|-------------------------------------------------|---------|----------|----------|
+| govuk.frontend.version | `GOVUK_FRONTEND_VERSION` | govukFrontendVersion   | GOVUK FE version to use (and available via CDN) | `4.6.0` | N        | `5.11.0` |
+| use.ch.header          | `USE_CH_HEADER`          | useChHeader            | to choose CH header vs GOV.UK                   | `...=1` | N        | `0`      |
 
 ## chsBaseLayout.html
 
 "Standard" layout for CHS services.
 
-**As per note above, the following application properties MUST be set accordingly.**
+**As per note above, the following ```commonweb``` application properties MUST be set accordingly.**
 
-| Property     | Environment     | Model Attribute | Description                                        |
-|--------------|-----------------|-----------------|----------------------------------------------------|
-| cdn.url      | `CDN_HOST`      | cdnUrl          | Global environment variable for CDN                |
-| chs.url      | `CHS_URL`       | chsUrl          | Global environment variable for main CHS home page |
-| piwik.url    | `PIWIK_URL`     | piwikUrl        | Relevant Piwik/Matomo url for service              |
-| piwik.siteId | `PIWIK_SITE_ID` | piwikSiteId     | Relevant Piwik/Matomo id for service               |
+| Property     | Environment variable | Global model attribute | Description                                        |
+|--------------|----------------------|------------------------|----------------------------------------------------|
+| cdn.url      | `CDN_HOST`           | cdnUrl                 | Global environment variable for CDN                |
+| chs.url      | `CHS_URL`            | chsUrl                 | Global environment variable for main CHS home page |
+| piwik.url    | `PIWIK_URL`          | piwikUrl               | Relevant Piwik/Matomo url for service              |
+| piwik.siteId | `PIWIK_SITE_ID`      | piwikSiteId            | Relevant Piwik/Matomo id for service               |
 
 Also requires ```serviceName``` variable to be set to the name of the service using the template as described above.
 
@@ -198,12 +204,12 @@ If the ```backLink``` model attribute is absent, the 'back' link won't appear. I
 
 Fragment that provides useful links to the user below the main page content. Links give information about our policies, Cookies, contacting Companies House and information specific to Developers.
 
-**As per notes above, the following application properties MUST be set accordingly.**
+**As per notes above, the following ```commonweb``` application properties MUST be set accordingly.**
 
-| Property      | Environment Variable | Model attribute | Description             | Example                                                   | Required | Default |
-|---------------|----------------------|-----------------|-------------------------|-----------------------------------------------------------|----------|---------|
-| contactUsUrl  | `CONTACT_US_URL`     | contactUsUrl    | Link to contact us page | `https://www.gov.uk/find-contact-details-companies-house` | Y        |         |
-| developer.url | `DEVELOPER_URL`      | developerUrl    | Link to developer hub   | `https://developer.company-information.service.gov.uk`    | Y        |         |
+| Property      | Environment variable | Global model attribute | Description             | Example                                                   | Required | Default |
+|---------------|----------------------|------------------------|-------------------------|-----------------------------------------------------------|----------|---------|
+| contactUsUrl  | `CONTACT_US_URL`     | contactUsUrl           | Link to contact us page | `https://www.gov.uk/find-contact-details-companies-house` | Y        |         |
+| developer.url | `DEVELOPER_URL`      | developerUrl           | Link to developer hub   | `https://developer.company-information.service.gov.uk`    | Y        |         |
 
 ---
 ### Remaining fragments not yet fully integrated into chsBaseLayout
