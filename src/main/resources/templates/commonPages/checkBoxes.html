@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+
+</head>
+<body>
+<div id="oauth-web-main-content" layout:fragment="content">
+    <div class="govuk-width-container">
+
+        <form class="govuk-form" th:action="${formAction}" method="post" th:object="${checkBoxOptions}">
+            <div th:insert="~{fragments/components/checkBoxes :: checkBoxes(${checkBoxOptions})}" />
+
+            <div class="govuk-button-group">
+                <div th:insert="~{fragments/components/button :: button(${submitButtonOptions})}" />
+                <div th:insert="~{fragments/components/button :: button(${cancelButtonOptions})}" th:if="${!#strings.isEmpty(previousUrl)}" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

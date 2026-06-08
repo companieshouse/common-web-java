@@ -1,0 +1,31 @@
+<th:block th:fragment="checkBoxes(checkBoxOptions)">
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" th:if="${!#strings.isEmpty(checkBoxOptions.legendText)}">
+                <h1 class="govuk-fieldset__heading" th:text="${checkBoxOptions.legendText}" th:if="${checkBoxOptions.hasLegendTitle}">
+                </h1>
+                <span th:text="${checkBoxOptions.legendText}" th:if="${!checkBoxOptions.hasLegendTitle}"></span>
+            </legend>
+            <div id="waste-hint" class="govuk-hint" th:text="${checkBoxOptions.hintText?: 'Select all that apply'}">
+            </div>
+            <p th:id="${checkBoxOptions.checkBoxIdPrefix?: 'check'}-error" class="govuk-error-message" th:if="${!#strings.isEmpty(checkBoxOptions.errorText) && #lists.isEmpty(userMessages)}">
+                <span class="govuk-visually-hidden">Error:</span>
+                <span th:text="${checkBoxOptions.errorText?: 'There is a problem with this section'}"></span>
+            </p>
+            <p th:id="${checkBoxOptions.checkBoxIdPrefix?: 'check'}-error" class="govuk-error-message" th:if="${#strings.isEmpty(checkBoxOptions.errorText) && !#lists.isEmpty(userMessages)}">
+                <span class="govuk-visually-hidden">Error:</span>
+                <span th:text="${userMessages[0].messages?: 'There is a problem with this section'}"></span>
+            </p>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item" th:each="option, stat : ${checkBoxOptions.checkBoxes}">
+                    <div class="govuk-checkboxes__divider" th:text="${option.value?: 'Or'}" th:if="${!option.isOption}"></div>
+
+                    <input class="govuk-checkboxes__input" th:id="${(checkBoxOptions.checkBoxIdPrefix?: 'check') + '-' + stat.index}" th:name="${checkBoxOptions.name}" type="checkbox" th:value="${option.value}" tr:attrappend="checked=${option.checked}" th:if="${option.isOption}">
+
+                    <label class="govuk-label govuk-checkboxes__label" th:for="${(checkBoxOptions.checkBoxIdPrefix?: 'check') + '-' + stat.index}" th:text="${option.label}" th:if="${option.isOption}">
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</th:block>
