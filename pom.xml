@@ -21,12 +21,11 @@
 
     <properties>
         <java.version>21</java.version>
-        <spring-boot-dependencies.version>3.5.14</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.5.15</spring-boot-dependencies.version>
+        <ch-core-bom.version>0.1.14</ch-core-bom.version>
+        <ch-test-bom.version>0.1.14</ch-test-bom.version>
         <thymeleaf-layout-dialect.version>3.4.0</thymeleaf-layout-dialect.version>
-        <structured-logging.version>3.0.55</structured-logging.version>
-
-        <!-- CVE-2026-34477, CVE-2026-34479 -->
-        <log4j.version>2.25.4</log4j.version>
+        <structured-logging.version>3.0.57</structured-logging.version>
 
         <!-- Maven Plugins -->
         <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -35,6 +34,20 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>uk.gov.companieshouse</groupId>
+                <artifactId>ch-core-bom</artifactId>
+                <version>${ch-core-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>uk.gov.companieshouse</groupId>
+                <artifactId>ch-test-bom</artifactId>
+                <version>${ch-test-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -47,24 +60,6 @@
                 <groupId>uk.gov.companieshouse</groupId>
                 <artifactId>structured-logging</artifactId>
                 <version>${structured-logging.version}</version>
-            </dependency>
-
-            <!-- CVE-2025-48924 -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.20.0</version>
-            </dependency>
-            <!-- CVE-2025-68161 -->
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-to-slf4j</artifactId>
-                <version>${log4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
