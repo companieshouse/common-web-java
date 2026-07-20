@@ -21,6 +21,10 @@
                    th:href="@{{enquiries}(enquiries=${@environment.getProperty('enquiries')})}"
                    data-th-text="#{label.error.page.content.email.link}">email us</a>
             </p>
+            <p class="govuk-body" th:if="${correlationId}">
+                <span th:text="#{label.error.page.content.reference-prefix}">Your reference number is:</span>
+                <strong th:text="${correlationId}"></strong>
+            </p>
             </div>
     </body>
 </html>
