@@ -1,7 +1,10 @@
 package uk.gov.companieshouse.common.web.advice;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import uk.gov.companieshouse.common.web.config.CommonWebProperties;
 
 @ControllerAdvice
@@ -56,5 +59,17 @@ public class CommonGlobalModelAttributes {
     @ModelAttribute("developerUrl")
     public String developerUrl() {
         return props.getDeveloperUrl();
+    }
+
+    @ModelAttribute("requestQueryString")
+    public String requestQueryString() {
+        ServletRequestAttributes attrs =
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attrs == null) {
+            return "";
+        }
+        HttpServletRequest request = attrs.getRequest();
+        String queryString = request.getQueryString();
+        return queryString != null ? queryString : "";
     }
 }

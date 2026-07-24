@@ -2,6 +2,9 @@ package uk.gov.companieshouse.common.web.advice;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import uk.gov.companieshouse.common.web.config.CommonWebProperties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +13,7 @@ import static org.mockito.Mockito.*;
 class CommonGlobalModelAttributesTest {
     private CommonWebProperties props;
     private CommonGlobalModelAttributes attributes;
+    private MockHttpServletRequest mockRequest;
 
     @BeforeEach
     void setUp() {
@@ -23,6 +27,10 @@ class CommonGlobalModelAttributesTest {
         when(props.getPiwikSiteId()).thenReturn("1");
         when(props.getContactUsUrl()).thenReturn("http://contact");
         when(props.getDeveloperUrl()).thenReturn("http://dev");
+
+        mockRequest = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(mockRequest));
+
         attributes = new CommonGlobalModelAttributes(props);
     }
 
@@ -69,6 +77,18 @@ class CommonGlobalModelAttributesTest {
     @Test
     void testDeveloperUrl() {
         assertEquals("http://dev", attributes.developerUrl());
+    }
+
+    @Test
+    void testRequestQueryStringReturnsQueryString() {
+        mockRequest.setQueryString("lang=en&page=1");
+        assertEquals("lang=en&page=1", attributes.requestQueryString());
+    }
+
+    @Test
+    void testRequestQueryStringReturnsEmptyStringWhenNull() {
+        mockRequest.setQueryString(null);
+        assertEquals("", attributes.requestQueryString());
     }
 }
 
