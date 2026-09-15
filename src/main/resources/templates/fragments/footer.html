@@ -65,6 +65,12 @@
                            th:href="${developerUrl}"
                            data-th-text="#{label.footer.developers}" target="_blank"></a>
                     </li>
+                    <li class="govuk-footer__inline-list-item" th:if="${managedAccessUrlFeatureFlag != null}">
+                        <a class="govuk-footer__link" id="managed-access-link"
+                           data-event-id="managed-access-footer-link"
+                           th:href="${managedAccessUrl}"
+                           data-th-text="#{label.footer.managed-access}" target="_blank"></a>
+                    </li>
                 </ul>
                 <span class="govuk-footer__inline-list-item govuk-!-margin-bottom-0">
                     Built by <a class="govuk-footer__link"
