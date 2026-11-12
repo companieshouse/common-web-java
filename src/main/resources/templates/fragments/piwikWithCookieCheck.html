@@ -33,19 +33,19 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">You've accepted analytics cookies. You can
-              <a class="govuk-link" data-event-id="change-accepted-cookies"
+            <p class="govuk-body"><span data-th-text="#{label.cookieBanner.accepted}">You've accepted analytics cookies. You can</span>
+              <a class="govuk-link" data-event-id="change-accepted-cookies" data-th-text="#{label.cookieBanner.changeSettings}"
                  th:href="@{{chsUrl}/help/cookies}">
                 change your cookie settings
               </a>
-              at any time.
+              <span data-th-text="#{label.cookieBanner.atAnyTime}">at any time.</span>
             </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="hide-accepted-message-button" class="govuk-button" data-event-id="hide-accepted-message" data-module="govuk-button">
-          Hide this message
+          <span data-th-text="#{label.cookieBanner.hideMessage}">Hide this message</span>
         </button>
       </div>
     </div>
@@ -53,9 +53,9 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-             <p class="govuk-body">You've rejected analytics cookies. You can
+             <p class="govuk-body" data-th-text="#{label.cookieBanner.rejected}">You've rejected analytics cookies. You can
                <a class="govuk-link" data-event-id="change-cookie-settings"
-                  th:href="@{{chsUrl}/help/cookies}">
+                  th:href="@{{chsUrl}/help/cookies}" data-th-text="#{label.cookieBanner.changeSettings}">
                  change your cookie settings
                </a>
                at any time.
@@ -75,9 +75,9 @@
       <div class="ch-cookie-cookie-banner__message ch-cookie-width-container">
         <div class="ch-cookie-grid-row">
           <div class="ch-cookie-grid-column-two-thirds">
-            <h2 class="ch-cookie-cookie-banner__heading ch-cookie-heading-m">Cookies on Companies House services</h2>
+            <h2 class="ch-cookie-cookie-banner__heading ch-cookie-heading-m" data-th-text="#{label.cookieBanner.title}">Cookies on Companies House services</h2>
             <div class="ch-cookie-cookie-banner__content">
-               <p class="ch-cookie-body govuk-body">We use cookies to make our services work and collect analytics information. To accept or reject analytics cookies, turn on JavaScript in your browser settings and reload this page.</p>
+               <p class="ch-cookie-body govuk-body" data-th-text="#{label.cookieBanner.noJavaScript}">We use cookies to make our services work and collect analytics information. To accept or reject analytics cookies, turn on JavaScript in your browser settings and reload this page.</p>
             </div>
           </div>
         </div>
