@@ -33,7 +33,7 @@
         </th:block>
         <div class="govuk-footer__meta">
             <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-                <h2 class="govuk-visually-hidden">Support links</h2>
+                <h2 class="govuk-visually-hidden" data-th-text="#{label.footer.supportLinks}">Support links</h2>
                 <ul class="govuk-footer__inline-list">
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link" id="policies-link"
@@ -73,7 +73,8 @@
                     </li>
                 </ul>
                 <span class="govuk-footer__inline-list-item govuk-!-margin-bottom-0">
-                    Built by <a class="govuk-footer__link"
+                    <span data-th-text="#{label.footer.builtBy}"> Built by </span>
+                    <a class="govuk-footer__link"
                                 data-event-id="companies-house-footer-link"
                                 href="https://www.gov.uk/government/organisations/companies-house" rel="license">Companies House</a>
                 </span>

@@ -9,24 +9,24 @@
     <div id="accept-or-reject-message" class="govuk-cookie-banner__message govuk-width-container" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on Companies House services</h2>
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m" data-th-text="#{label.cookieBanner.title}">Cookies on Companies House services</h2>
           <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">We use some essential cookies to make our services work.</p>
-            <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use our services and to make improvements.</p>
+            <p class="govuk-body" data-th-text="#{label.cookieBanner.essentialCookies}">We use some essential cookies to make our services work.</p>
+            <p class="govuk-body" data-th-text="#{label.cookieBanner.analyticsCookies}">We'd also like to use analytics cookies so we can understand how you use our services and to make improvements.</p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="accept-cookies-button" type="button" class="govuk-button"
-                data-event-id="accept-analytics-cookies" data-module="govuk-button">
+                data-event-id="accept-analytics-cookies" data-module="govuk-button" data-th-text="#{label.cookieBanner.accept}">
           Accept analytics cookies
         </button>
         <button id="reject-cookies-button" type="button" class="govuk-button"
-                data-event-id="reject-analytics-cookies" data-module="govuk-button">
+                data-event-id="reject-analytics-cookies" data-module="govuk-button" data-th-text="#{label.cookieBanner.reject}">
           Reject analytics cookies
         </button>
         <a class="govuk-link" data-event-id="view-cookies"
-           th:href="@{{chsUrl}/help/cookies}">View cookies</a>
+           th:href="@{{chsUrl}/help/cookies}" data-th-text="#{label.cookieBanner.viewCookies}">View cookies</a>
       </div>
     </div>
     <div id="accepted-cookies-message" class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
