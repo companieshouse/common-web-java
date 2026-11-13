@@ -5,47 +5,47 @@
 </head>
 <body>
 <div th:fragment="cookieBanner">
-  <div id="cookie-banner" class="govuk-cookie-banner" role="region" aria-label="Cookies on Companies House services" hidden>
+  <div id="cookie-banner" class="govuk-cookie-banner" role="region" data-th-attr="aria-label=#{label.cookieBanner.title}" hidden>
     <div id="accept-or-reject-message" class="govuk-cookie-banner__message govuk-width-container" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on Companies House services</h2>
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m" data-th-text="#{label.cookieBanner.title}">Cookies on Companies House services</h2>
           <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">We use some essential cookies to make our services work.</p>
-            <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use our services and to make improvements.</p>
+            <p class="govuk-body" data-th-text="#{label.cookieBanner.essentialCookies}">We use some essential cookies to make our services work.</p>
+            <p class="govuk-body" data-th-text="#{label.cookieBanner.analyticsCookies}">We'd also like to use analytics cookies so we can understand how you use our services and to make improvements.</p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="accept-cookies-button" type="button" class="govuk-button"
-                data-event-id="accept-analytics-cookies" data-module="govuk-button">
+                data-event-id="accept-analytics-cookies" data-module="govuk-button" data-th-text="#{label.cookieBanner.accept}">
           Accept analytics cookies
         </button>
         <button id="reject-cookies-button" type="button" class="govuk-button"
-                data-event-id="reject-analytics-cookies" data-module="govuk-button">
+                data-event-id="reject-analytics-cookies" data-module="govuk-button" data-th-text="#{label.cookieBanner.reject}">
           Reject analytics cookies
         </button>
         <a class="govuk-link" data-event-id="view-cookies"
-           th:href="@{{chsUrl}/help/cookies}">View cookies</a>
+           th:href="@{{chsUrl}/help/cookies}" data-th-text="#{label.cookieBanner.viewCookies}">View cookies</a>
       </div>
     </div>
     <div id="accepted-cookies-message" class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">You've accepted analytics cookies. You can
-              <a class="govuk-link" data-event-id="change-accepted-cookies"
+            <p class="govuk-body"><span data-th-text="#{label.cookieBanner.accepted}">You've accepted analytics cookies. You can</span>
+              <a class="govuk-link" data-event-id="change-accepted-cookies" data-th-text="#{label.cookieBanner.changeSettings}"
                  th:href="@{{chsUrl}/help/cookies}">
                 change your cookie settings
               </a>
-              at any time.
+              <span data-th-text="#{label.cookieBanner.atAnyTime}">at any time.</span>
             </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="hide-accepted-message-button" class="govuk-button" data-event-id="hide-accepted-message" data-module="govuk-button">
-          Hide this message
+          <span data-th-text="#{label.cookieBanner.hideMessage}">Hide this message</span>
         </button>
       </div>
     </div>
@@ -53,31 +53,31 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-             <p class="govuk-body">You've rejected analytics cookies. You can
+             <p class="govuk-body" ><span data-th-text="#{label.cookieBanner.rejected}">You've rejected analytics cookies. You can</span>
                <a class="govuk-link" data-event-id="change-cookie-settings"
-                  th:href="@{{chsUrl}/help/cookies}">
+                  th:href="@{{chsUrl}/help/cookies}" data-th-text="#{label.cookieBanner.changeSettings}">
                  change your cookie settings
                </a>
-               at any time.
+               <span data-th-text="#{label.cookieBanner.atAnyTime}">at any time.</span>
              </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="hide-rejected-message-button" class="govuk-button" data-event-id="hide-this-message" data-module="govuk-button">
-          Hide this message
+          <span data-th-text="#{label.cookieBanner.hideMessage}">Hide this message</span>
         </button>
       </div>
     </div>
   </div>
   <noscript>
-    <div class="ch-cookie-cookie-banner" role="region" aria-label="Cookies on Companies House services">
+    <div class="ch-cookie-cookie-banner" role="region"  data-th-attr="aria-label=#{label.cookieBanner.title}">
       <div class="ch-cookie-cookie-banner__message ch-cookie-width-container">
         <div class="ch-cookie-grid-row">
           <div class="ch-cookie-grid-column-two-thirds">
-            <h2 class="ch-cookie-cookie-banner__heading ch-cookie-heading-m">Cookies on Companies House services</h2>
+            <h2 class="ch-cookie-cookie-banner__heading ch-cookie-heading-m" data-th-text="#{label.cookieBanner.title}">Cookies on Companies House services</h2>
             <div class="ch-cookie-cookie-banner__content">
-               <p class="ch-cookie-body govuk-body">We use cookies to make our services work and collect analytics information. To accept or reject analytics cookies, turn on JavaScript in your browser settings and reload this page.</p>
+               <p class="ch-cookie-body govuk-body" data-th-text="#{label.cookieBanner.noJavaScript}">We use cookies to make our services work and collect analytics information. To accept or reject analytics cookies, turn on JavaScript in your browser settings and reload this page.</p>
             </div>
           </div>
         </div>

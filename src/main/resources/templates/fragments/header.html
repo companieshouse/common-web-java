@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="govuk-template">
     <head>
-        <title th:text='#{label.fragments-header.title}'>Header</title>
+        <title th:text='#{label.header.title}'>Header</title>
     </head>
 
     <body class="govuk-template__body">
@@ -14,7 +14,7 @@
                         <div class="ch-header__logo">
                         <a href="/" class="ch-header__link">
                             <div class="ch-header__icon"></div>
-                            <span class="ch-header__logo-text">Companies House</span>
+                            <span class="ch-header__logo-text" data-th-text="#{label.header.logoText}">Companies House</span>
                         </a>
                         </div>
                     </div>
