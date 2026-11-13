@@ -5,7 +5,7 @@
         th:fragment="localesBanner">
     <div class="govuk-width-container">
         <div class="govuk-grid-column-full no-padd">
-            <nav class="govuk-language-select" aria-label="Language switcher">
+            <nav class="govuk-language-select" th:attr="aria-label=#{label.languageSwitcher}">
                 <ul class="govuk-language-select__list">
                     <li class="govuk-language-select__list-item" style="display: inline-flex">
                         <div th:replace="~{fragments/addLangToUrl :: addLangToUrl(${requestURI}, #{label.lang.en}, 'en', true)}"></div>

@@ -5,7 +5,7 @@
 </head>
 <body>
 <div th:fragment="cookieBanner">
-  <div id="cookie-banner" class="govuk-cookie-banner" role="region" aria-label="Cookies on Companies House services" hidden>
+  <div id="cookie-banner" class="govuk-cookie-banner" role="region" data-th-attr="aria-label=#{label.cookieBanner.title}" hidden>
     <div id="accept-or-reject-message" class="govuk-cookie-banner__message govuk-width-container" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -53,25 +53,25 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
-             <p class="govuk-body" data-th-text="#{label.cookieBanner.rejected}">You've rejected analytics cookies. You can
+             <p class="govuk-body" ><span data-th-text="#{label.cookieBanner.rejected}">You've rejected analytics cookies. You can</span>
                <a class="govuk-link" data-event-id="change-cookie-settings"
                   th:href="@{{chsUrl}/help/cookies}" data-th-text="#{label.cookieBanner.changeSettings}">
                  change your cookie settings
                </a>
-               at any time.
+               <span data-th-text="#{label.cookieBanner.atAnyTime}">at any time.</span>
              </p>
           </div>
         </div>
       </div>
       <div class="govuk-button-group">
         <button id="hide-rejected-message-button" class="govuk-button" data-event-id="hide-this-message" data-module="govuk-button">
-          Hide this message
+          <span data-th-text="#{label.cookieBanner.hideMessage}">Hide this message</span>
         </button>
       </div>
     </div>
   </div>
   <noscript>
-    <div class="ch-cookie-cookie-banner" role="region" aria-label="Cookies on Companies House services">
+    <div class="ch-cookie-cookie-banner" role="region"  data-th-attr="aria-label=#{label.cookieBanner.title}">
       <div class="ch-cookie-cookie-banner__message ch-cookie-width-container">
         <div class="ch-cookie-grid-row">
           <div class="ch-cookie-grid-column-two-thirds">
